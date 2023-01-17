@@ -5,12 +5,9 @@ namespace Filippovk997\WildberriesAdvert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class WildberriesClient
+class WildberriesAdvertClient
 {
-    private const STATISTICS_URL = 'https://statistics-api.wildberries.ru/';
-    private const NON_STATISTICS_URL = 'https://suppliers-api.wildberries.ru/';
-    // @TODO: удалить после перехода на новые ключи WB (стандартный и статистика)
-    private const OLD_STATISTICS_URL = 'https://suppliers-stats.wildberries.ru/';
+    private const ADVERT_URL = 'https://advert-api.wb.ru/';
 
     private const DEFAULT_HEADER = [
         'Accept' => 'application/json',
@@ -28,7 +25,7 @@ class WildberriesClient
      */
     public function __construct()
     {
-        $this->config = config('wildberries');
+        $this->config = null;
     }
 
     /**
@@ -37,10 +34,7 @@ class WildberriesClient
     protected function validateKeys(array $keys): void
     {
         $validator = Validator::make($keys, [
-            'token_api' => 'required|string',
-            'token_api_stat' => 'required|string',
-            // @TODO: удалить после перехода на новые ключи WB (стандартный и статистика)
-            'token_stat_x64' => 'string',
+            'token_api_adv' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -56,30 +50,12 @@ class WildberriesClient
      * @param bool $is_stat
      * @return WildberriesResponse
      */
-    protected function getResponse(string $uri = null, array $params = [], bool $is_stat = false): WildberriesResponse
+    protected function getResponse(string $uri = null, array $params = []): WildberriesResponse
     {
-        if ($this->config['token_api_stat'] !== 'NULL') {
-            // @TODO: оставить после перехода на новые ключи WB (стандартный и статистика)
-            $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
-            $options = self::DEFAULT_OPTIONS;
+        $full_path = self::ADVERT_URL . $uri;
+        $options = self::DEFAULT_OPTIONS;
 
-            $options['headers']['Authorization'] = $is_stat ? $this->config['token_api_stat'] : $this->config['token_api'];
-        } else {
-            // @TODO: удалить после перехода на новые ключи WB (стандартный и статистика)
-            $full_path = ($is_stat ? self::OLD_STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
-            $options = self::DEFAULT_OPTIONS;
-
-            if ($is_stat) {
-                $params['key'] = $this->config['token_stat_x64'];
-            } else {
-                $options['headers']['Authorization'] = $this->config['token_api'];
-            }
-        }
-        if ($is_stat) {
-            
-        } else {
-            $options['headers']['Authorization'] = $this->config['token_api'];
-        }
+        $options['headers']['Authorization'] = $this->config['token_api_adv'];
 
         if (count($params)) {
             $full_path .= '?' . http_build_query($params);
