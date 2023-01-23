@@ -4,7 +4,7 @@ namespace KFilippovk\Wildberries;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
-use KFilippovk\WildberriesAdvert\Exceptions\WildberriesHttpException;
+use KFilippovk\Wildberries\Exceptions\WildberriesHttpException;
 use Throwable;
 
 class WildberriesRequest

@@ -23,8 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-        "KFilippovk\\Wildberries\\": "src/",
-        "KFilippovk\\WildberriesAdvert\\": "src/"
+        "KFilippovk\\Wildberries\\": "src/"
     }
     },
     "extra": {
