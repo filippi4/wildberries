@@ -31,11 +31,11 @@
         "laravel":{
             "providers": [
                 "Filippovk997\\Wildberries\\WildberriesServiceProvider",
-                "Filippovk997\\WildberriesAdvert\\WildberriesAdvertServiceProvider"
+                "Filippovk997\\Wildberries\\WildberriesAdvertServiceProvider"
             ],
             "aliases": {
                 "Wildberries": "Filippovk997\\Wildberries\\Facades\\Wildberries",
-                "WildberriesAdvert": "Filippovk997\\WildberriesAdvert\\Facades\\WildberriesAdvert"
+                "WildberriesAdvert": "Filippovk997\\Wildberries\\Facades\\WildberriesAdvert"
             }
         }
     }
