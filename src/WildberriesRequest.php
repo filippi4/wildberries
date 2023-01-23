@@ -1,6 +1,5 @@
 <?php
 
-
 namespace KFilippovk\Wildberries;
 
 use GuzzleHttp\Client;
