@@ -1,6 +1,6 @@
 <?php
 
-namespace Filippovk997\Wildberries\Exceptions;
+namespace KFilippovk\Wildberries\Exceptions;
 
 
 class WildberriesException extends \RuntimeException

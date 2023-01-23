@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Filippovk997\Wildberries;
+namespace KFilippovk\Wildberries;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
-use Filippovk997\WildberriesAdvert\Exceptions\WildberriesHttpException;
+use KFilippovk\WildberriesAdvert\Exceptions\WildberriesHttpException;
 use Throwable;
 
 class WildberriesRequest

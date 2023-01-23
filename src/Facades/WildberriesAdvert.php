@@ -1,6 +1,6 @@
 <?php
 
-namespace Filippovk997\Wildberries\Facades;
+namespace KFilippovk\Wildberries\Facades;
 
 /**
  * Custom config

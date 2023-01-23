@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Filippovk997\Wildberries;
+namespace KFilippovk\Wildberries;
 
 use Psr\Http\Message\ResponseInterface;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Filippovk997\Wildberries\Facades;
+namespace KFilippovk\Wildberries\Facades;
 
 use DateTime;
 
 /**
  * Custom config
- * @method static \Filippovk997\Wildberries\WildberriesClient config($keys)
+ * @method static \KFilippovk\Wildberries\WildberriesClient config($keys)
  * 
  * Цены
  * @method static array getInfo(int $quantity = 0)

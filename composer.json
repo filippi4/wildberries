@@ -1,5 +1,5 @@
 {
-    "name": "filippovk997/wildberries",
+    "name": "kfilippovk/wildberries",
     "description": "Implementation of API methods Wildberries for Laravel.",
     "minimum-stability": "stable",
     "license": "proprietary",
@@ -23,19 +23,19 @@
     },
     "autoload": {
         "psr-4": {
-        "Filippovk997\\Wildberries\\": "src/",
-        "Filippovk997\\WildberriesAdvert\\": "src/"
+        "KFilippovk\\Wildberries\\": "src/",
+        "KFilippovk\\WildberriesAdvert\\": "src/"
     }
     },
     "extra": {
         "laravel":{
             "providers": [
-                "Filippovk997\\Wildberries\\WildberriesServiceProvider",
-                "Filippovk997\\Wildberries\\WildberriesAdvertServiceProvider"
+                "KFilippovk\\Wildberries\\WildberriesServiceProvider",
+                "KFilippovk\\Wildberries\\WildberriesAdvertServiceProvider"
             ],
             "aliases": {
-                "Wildberries": "Filippovk997\\Wildberries\\Facades\\Wildberries",
-                "WildberriesAdvert": "Filippovk997\\Wildberries\\Facades\\WildberriesAdvert"
+                "Wildberries": "KFilippovk\\Wildberries\\Facades\\Wildberries",
+                "WildberriesAdvert": "KFilippovk\\Wildberries\\Facades\\WildberriesAdvert"
             }
         }
     }

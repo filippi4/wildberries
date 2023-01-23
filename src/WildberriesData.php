@@ -1,9 +1,6 @@
 <?php
 
-namespace Filippovk997\Wildberries;
-
-
-use stdClass;
+namespace KFilippovk\Wildberries;
 
 class WildberriesData
 {
