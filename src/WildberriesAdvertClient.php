@@ -1,6 +1,6 @@
 <?php
 
-namespace Filippovk997\WildberriesAdvert;
+namespace Filippovk997\Wildberries;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Filippovk997\WildberriesAdvert\Facades;
+namespace Filippovk997\Wildberries\Facades;
 
 /**
  * Custom config

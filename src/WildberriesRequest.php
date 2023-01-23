@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Filippovk997\WildberriesAdvert;
+namespace Filippovk997\Wildberries;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
