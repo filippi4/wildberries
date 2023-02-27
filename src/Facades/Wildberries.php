@@ -2,15 +2,14 @@
 
 namespace KFilippovk\Wildberries\Facades;
 
+use Illuminate\Support\Facades\Facade;
 use DateTime;
 
 /**
  * Custom config
- * @method static \KFilippovk\Wildberries\WildberriesClient config($keys)
- * 
+ * @method static Wildberries \KFilippovk\Wildberries\Wildberries config($keys)
  * Цены
  * @method static array getInfo(int $quantity = 0)
- *
  * Контент / Просмотр
  * @method static mixed getCardsErrorList()
  * Контент / Конфигуратор
@@ -27,7 +26,6 @@ use DateTime;
  * @method static mixed getDirectoryConsists()
  * @method static mixed getDirectoryBrands()
  * @method static mixed getDirectoryTnved()
- *
  * Marketplace
  * @method static mixed getSupplies()
  * @method static mixed getSuppliesIdBarcode(string $id, string $type)
@@ -35,7 +33,6 @@ use DateTime;
  * @method static mixed getStocks(int $skip, int $take, $search = null)
  * @method static array getWarehouses()
  * @method static mixed getOrders(int $skip, int $take, DateTime $date_start, DateTime $date_end = null, int $status = null, int $id = null, bool $is_UTC = false)
- *
  * Статистика
  * @method static array getSupplierIncomes(DateTime $dateFrom, bool $is_UTC = false)
  * @method static array getSupplierStocks(DateTime $dateFrom, bool $is_UTC = false)
@@ -45,8 +42,7 @@ use DateTime;
  * @method static array getSupplierExciseGoods(DateTime $dateFrom, bool $is_UTC = false)
  **/
 
-
-class Wildberries extends \Illuminate\Support\Facades\Facade
+class Wildberries extends Facade
 {
     protected static function getFacadeAccessor(): string
     {

@@ -46,6 +46,21 @@ class Wildberries extends WildberriesClient
     }
 
     /**
+     * Возвращает остатки товаров.
+     *
+     * @param int $warehouse Идентификатор склада продавца
+     * @param array $skus Массив баркодов
+     * @return mixed
+     */
+    public function getStocksV3(int $warehouse, array $skus): mixed
+    {
+        return (new WildberriesData($this->postResponse(
+            'api/v3/stocks/' . $warehouse,
+            compact('skus')
+        )))->data;
+    }
+
+    /**
      * Возвращает список сборочных заданий поставщика.
      *
      * @param int $skip Задает сколько записей пропустить (для пагинации)

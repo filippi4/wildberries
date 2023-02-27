@@ -65,4 +65,25 @@ class WildberriesClient
 
         return WildberriesRequest::makeRequest($full_path, $options, 'get');
     }
+
+    /**
+     * Create POST request to bank API
+     *
+     * @param string|null $uri
+     * @param array $params
+     * @return WildberriesResponse
+     */
+    protected function postResponse(string $uri = null, array $params = [], bool $is_stat = false): WildberriesResponse
+    {
+        $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
+        $options = self::DEFAULT_OPTIONS;
+
+        $options['headers']['Authorization'] = $is_stat ? $this->config['token_api_stat'] : $this->config['token_api'];
+
+        if (count($params)) {
+            $options['json'] = $params;
+        }
+
+        return WildberriesRequest::makeRequest($full_path, $options, 'post');
+    }
 }
