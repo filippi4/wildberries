@@ -80,4 +80,49 @@ class WildberriesAdvert extends WildberriesAdvertClient
             compact('type', 'param')
         )))->data;
     }
+
+    /**
+     * Словарь значений параметра subjectId
+     * Метод позволяет получить список значений параметра subjectId
+     *
+     * @param ?int $id
+     * @return mixed
+     */
+    public function getParamsSubject(int $id = null): mixed
+    {
+        return (new WildberriesData($this->getResponse(
+            'adv/v0/params/subject',
+            array_diff(compact('id'), [''])
+        )))->data;
+    }
+    
+    /**
+     * Словарь значений параметра menuId
+     * Метод позволяет получить список значений параметра menuId
+     *
+     * @param ?int $id
+     * @return mixed
+     */
+    public function getParamsMenu(int $id = null): mixed
+    {
+        return (new WildberriesData($this->getResponse(
+            'adv/v0/params/menu',
+            array_diff(compact('id'), [''])
+        )))->data;
+    }
+
+    /**
+     * Словарь значений параметра setId
+     * Метод позволяет получить список значений параметра setId
+     *
+     * @param ?int $id
+     * @return mixed
+     */
+    public function getParamsSet(int $id = null): mixed
+    {
+        return (new WildberriesData($this->getResponse(
+            'adv/v0/params/set',
+            array_diff(compact('id'), [''])
+        )))->data;
+    }
 }
