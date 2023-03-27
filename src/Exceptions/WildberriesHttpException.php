@@ -1,6 +1,6 @@
 <?php
 
-namespace KFilippovk\Wildberries\Exceptions;
+namespace Filippi4\Wildberries\Exceptions;
 
 
 class WildberriesHttpException extends WildberriesException

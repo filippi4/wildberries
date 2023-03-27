@@ -1,10 +1,10 @@
 <?php
 
-namespace KFilippovk\Wildberries\Facades;
+namespace Filippi4\Wildberries\Facades;
 
 /**
  * Custom config
- * @method static WildberriesAdvert \KFilippovk\Wildberries\WildberriesAdvert config($keys)
+ * @method static WildberriesAdvert \Filippi4\Wildberries\WildberriesAdvert config($keys)
  * ...
  **/
 

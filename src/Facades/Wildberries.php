@@ -1,13 +1,13 @@
 <?php
 
-namespace KFilippovk\Wildberries\Facades;
+namespace Filippi4\Wildberries\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use DateTime;
 
 /**
  * Custom config
- * @method static Wildberries \KFilippovk\Wildberries\Wildberries config($keys)
+ * @method static Wildberries \Filippi4\Wildberries\Wildberries config($keys)
  * Цены
  * @method static array getInfo(int $quantity = 0)
  * Контент / Просмотр

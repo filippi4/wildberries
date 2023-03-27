@@ -1,6 +1,6 @@
 <?php
 
-namespace KFilippovk\Wildberries;
+namespace Filippi4\Wildberries;
 
 class WildberriesAdvert extends WildberriesAdvertClient
 {
