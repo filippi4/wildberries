@@ -106,7 +106,7 @@ class Wildberries extends WildberriesClient
     public function getWarehouses(): mixed
     {
         return (new WildberriesData($this->getResponse(
-            'api/v2/warehouses'
+            'api/v3/warehouses'
         )))->data;
     }
 
