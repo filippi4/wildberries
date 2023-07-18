@@ -47,7 +47,8 @@ class WildberriesAdvert extends WildberriesAdvertClient
         return (new WildberriesData($this->getResponse(
             'adv/v0/adverts',
             array_diff(compact('status', 'type', 'limit', 'offset', 'order', 'direction'), [''])
-        )))->data;
+        )
+        ))->data;
     }
 
     /**
@@ -62,7 +63,8 @@ class WildberriesAdvert extends WildberriesAdvertClient
         return (new WildberriesData($this->getResponse(
             'adv/v0/advert',
             compact('id')
-        )))->data;
+        )
+        ))->data;
     }
 
     /**
@@ -78,7 +80,8 @@ class WildberriesAdvert extends WildberriesAdvertClient
         return (new WildberriesData($this->getResponse(
             'adv/v0/cpm',
             compact('type', 'param')
-        )))->data;
+        )
+        ))->data;
     }
 
     /**
@@ -93,9 +96,10 @@ class WildberriesAdvert extends WildberriesAdvertClient
         return (new WildberriesData($this->getResponse(
             'adv/v0/params/subject',
             array_diff(compact('id'), [''])
-        )))->data;
+        )
+        ))->data;
     }
-    
+
     /**
      * Словарь значений параметра menuId
      * Метод позволяет получить список значений параметра menuId
@@ -108,7 +112,8 @@ class WildberriesAdvert extends WildberriesAdvertClient
         return (new WildberriesData($this->getResponse(
             'adv/v0/params/menu',
             array_diff(compact('id'), [''])
-        )))->data;
+        )
+        ))->data;
     }
 
     /**
@@ -123,6 +128,43 @@ class WildberriesAdvert extends WildberriesAdvertClient
         return (new WildberriesData($this->getResponse(
             'adv/v0/params/set',
             array_diff(compact('id'), [''])
-        )))->data;
+        )
+        ))->data;
+    }
+
+    /**
+     * Метод позволяет получать краткую статистику по автоматической РК.
+     *
+     * @param ?int $id
+     * @return mixed
+     */
+    public function getAutoStat(int $id = null): mixed
+    {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v1/auto/stat',
+                    array_diff(compact('id'), [''])
+                )
+            )
+        )->data;
+    }
+
+    /**
+     * Метод позволяет получать краткую статистику по РК Поиск + Каталог.
+     *
+     * @param ?int $id
+     * @return mixed
+     */
+    public function getSeacatStat(int $id = null): mixed
+    {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v1/seacat/stat',
+                    array_diff(compact('id'), [''])
+                )
+            )
+        )->data;
     }
 }
