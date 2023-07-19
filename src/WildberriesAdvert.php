@@ -132,6 +132,29 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
+     * Метод позволяет получать статистику поисковой кампании по ключевым фразам
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function getStatWords(int $id): mixed
+    {
+        return (new WildberriesData($this->getResponse('adv/v1/stat/words', compact('id'))))->data;
+    }
+
+    /**
+     * Метод позволяет получать расширенную статистку кампании, разделенную по дням, номенклатурам
+     * и платформам (сайт, андроид, IOS)
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function getFullstat(int $id): mixed
+    {
+        return (new WildberriesData($this->getResponse('adv/v1/fullstat', compact('id'))))->data;
+    }
+
+    /**
      * Метод позволяет получать краткую статистику по автоматической РК.
      *
      * @param int $id
