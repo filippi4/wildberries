@@ -2,8 +2,13 @@
 
 namespace Filippi4\Wildberries;
 
+use Illuminate\Validation\ValidationException;
+
 class WildberriesAdvert extends WildberriesAdvertClient
 {
+    /**
+     * @throws ValidationException
+     */
     public function config(array $keys): WildberriesAdvert
     {
         $this->validateKeys($keys);
@@ -14,7 +19,6 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Получение РК
      * Получение количества рекламных кампаний (РК) поставщика
      *
      * @return array
@@ -25,25 +29,25 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Список РК
      * Получение списка РК поставщика
      *
-     * @param int status 
-     * @param int type
-     * @param int limit
-     * @param int offset
-     * @param string order
-     * @param string direction
+     * @param ?int $status
+     * @param ?int $type
+     * @param ?int $limit
+     * @param ?int $offset
+     * @param ?string $order
+     * @param ?string $direction
      * @return array
      */
     public function getAdverts(
-        int $status = null,
-        int $type = null,
-        int $limit = null,
-        int $offset = null,
+        int    $status = null,
+        int    $type = null,
+        int    $limit = null,
+        int    $offset = null,
         string $order = null,
         string $direction = null,
-    ): mixed {
+    ): mixed
+    {
         return (new WildberriesData($this->getResponse(
             'adv/v0/adverts',
             array_diff(compact('status', 'type', 'limit', 'offset', 'order', 'direction'), [''])
@@ -52,10 +56,9 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Информация о РК
      * Получение информации об одной РК
-     * 
-     * @param int id
+     *
+     * @param int $id
      * @return array
      */
     public function getAdvert(int $id): mixed
@@ -68,11 +71,10 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Список ставок
      * Получение списка РК поставщика
      *
-     * @param int type
-     * @param int param
+     * @param int $type
+     * @param int $param
      * @return array
      */
     public function getCpm(int $type, int $param): mixed
@@ -85,7 +87,6 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Словарь значений параметра subjectId
      * Метод позволяет получить список значений параметра subjectId
      *
      * @param ?int $id
@@ -101,7 +102,6 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Словарь значений параметра menuId
      * Метод позволяет получить список значений параметра menuId
      *
      * @param ?int $id
@@ -117,7 +117,6 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Словарь значений параметра setId
      * Метод позволяет получить список значений параметра setId
      *
      * @param ?int $id
@@ -135,10 +134,10 @@ class WildberriesAdvert extends WildberriesAdvertClient
     /**
      * Метод позволяет получать краткую статистику по автоматической РК.
      *
-     * @param ?int $id
+     * @param int $id
      * @return mixed
      */
-    public function getAutoStat(int $id = null): mixed
+    public function getAutoStat(int $id): mixed
     {
         return (
             new WildberriesData(
@@ -153,10 +152,10 @@ class WildberriesAdvert extends WildberriesAdvertClient
     /**
      * Метод позволяет получать краткую статистику по РК Поиск + Каталог.
      *
-     * @param ?int $id
+     * @param int $id
      * @return mixed
      */
-    public function getSeacatStat(int $id = null): mixed
+    public function getSeacatStat(int $id): mixed
     {
         return (
             new WildberriesData(
