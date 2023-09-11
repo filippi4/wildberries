@@ -562,4 +562,11 @@ class Wildberries extends WildberriesClient
             true
         )))->data;
     }
+    
+    public function getContentHistoryNmid(array $nmIDs, $period): mixed
+    {
+        $props = compact('nmIDs', 'period');
+
+        return (new WildberriesData($this->postResponse('content/v1/analytics/nm-report/detail/history', $props)))->data;
+    }
 }
