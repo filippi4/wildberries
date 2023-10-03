@@ -29,11 +29,13 @@
             "providers": [
                 "Filippi4\\Wildberries\\WildberriesServiceProvider",
                 "Filippi4\\Wildberries\\WildberriesAdvertServiceProvider",
+                "Filippi4\\Wildberries\\WildberriesAdvertMediaServiceProvider",
                 "Filippi4\\Wildberries\\WildberriesFeedbacksServiceProvider"
             ],
             "aliases": {
                 "Wildberries": "Filippi4\\Wildberries\\Facades\\Wildberries",
                 "WildberriesAdvert": "Filippi4\\Wildberries\\Facades\\WildberriesAdvert",
+                "WildberriesAdvertMedia": "Filippi4\\Wildberries\\Facades\\WildberriesAdvertMedia",
                 "WildberriesFeedbacks": "Filippi4\\Wildberries\\Facades\\WildberriesFeedbacksServiceProvider"
             }
         }
