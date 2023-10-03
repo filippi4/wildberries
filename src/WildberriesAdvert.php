@@ -44,11 +44,14 @@ class WildberriesAdvert extends WildberriesAdvertClient
         string $order = null,
         string $direction = null,
     ): mixed {
-        return (new WildberriesData($this->getResponse(
-            'adv/v0/adverts',
-            array_diff(compact('status', 'type', 'limit', 'offset', 'order', 'direction'), [''])
-        )
-        ))->data;
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v0/adverts',
+                    array_diff(compact('status', 'type', 'limit', 'offset', 'order', 'direction'), [''])
+                )
+            )
+        )->data;
     }
 
     /**
@@ -60,11 +63,14 @@ class WildberriesAdvert extends WildberriesAdvertClient
      */
     public function getAdvert(int $id): mixed
     {
-        return (new WildberriesData($this->getResponse(
-            'adv/v0/advert',
-            compact('id')
-        )
-        ))->data;
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v0/advert',
+                    compact('id')
+                )
+            )
+        )->data;
     }
 
     /**
@@ -77,11 +83,14 @@ class WildberriesAdvert extends WildberriesAdvertClient
      */
     public function getCpm(int $type, int $param): mixed
     {
-        return (new WildberriesData($this->getResponse(
-            'adv/v0/cpm',
-            compact('type', 'param')
-        )
-        ))->data;
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v0/cpm',
+                    compact('type', 'param')
+                )
+            )
+        )->data;
     }
 
     /**
@@ -93,11 +102,14 @@ class WildberriesAdvert extends WildberriesAdvertClient
      */
     public function getParamsSubject(int $id = null): mixed
     {
-        return (new WildberriesData($this->getResponse(
-            'adv/v0/params/subject',
-            array_diff(compact('id'), [''])
-        )
-        ))->data;
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v0/params/subject',
+                    array_diff(compact('id'), [''])
+                )
+            )
+        )->data;
     }
 
     /**
@@ -109,11 +121,14 @@ class WildberriesAdvert extends WildberriesAdvertClient
      */
     public function getParamsMenu(int $id = null): mixed
     {
-        return (new WildberriesData($this->getResponse(
-            'adv/v0/params/menu',
-            array_diff(compact('id'), [''])
-        )
-        ))->data;
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v0/params/menu',
+                    array_diff(compact('id'), [''])
+                )
+            )
+        )->data;
     }
 
     /**
@@ -125,11 +140,14 @@ class WildberriesAdvert extends WildberriesAdvertClient
      */
     public function getParamsSet(int $id = null): mixed
     {
-        return (new WildberriesData($this->getResponse(
-            'adv/v0/params/set',
-            array_diff(compact('id'), [''])
-        )
-        ))->data;
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v0/params/set',
+                    array_diff(compact('id'), [''])
+                )
+            )
+        )->data;
     }
 
     /**
@@ -163,6 +181,25 @@ class WildberriesAdvert extends WildberriesAdvertClient
                 $this->getResponse(
                     'adv/v1/seacat/stat',
                     array_diff(compact('id'), [''])
+                )
+            )
+        )->data;
+    }
+
+    /**
+     * Метод позволяет получать историю затрат
+     *
+     * @param string $from
+     * @param string $to
+     * @return mixed
+     */
+    public function getCostHistory(string $from, string $to): mixed
+    {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v1/upd',
+                    array_diff(compact('from', 'to'), [''])
                 )
             )
         )->data;
