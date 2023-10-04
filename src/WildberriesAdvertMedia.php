@@ -38,4 +38,21 @@ class WildberriesAdvertMedia extends WildberriesAdvertMediaClient
             )
         )->data;
     }
+    /**
+     * Метод позволяет получить информацию об одной медиакампании
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function getMediaInfo(int $id): mixed
+    {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v1/advert',
+                    array_diff(compact('id'), [''])
+                )
+            )
+        )->data;
+    }
 }
