@@ -234,7 +234,7 @@ class WildberriesAdvert extends WildberriesAdvertClient
      * @return mixed
      */
 
-    public function getDepositHistory(string $from, string $to): mixed
+    public function getPaymentsHistory(string $from, string $to): mixed
     {
         return (
             new WildberriesData(
