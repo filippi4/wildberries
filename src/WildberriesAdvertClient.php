@@ -16,8 +16,8 @@ class WildberriesAdvertClient
 
     private const DEFAULT_OPTIONS = [
         'headers' => self::DEFAULT_HEADER,
-        'timeout' => 35,
-        'connect_timeout' => 35,
+        'timeout' => 50,
+        'connect_timeout' => 50,
     ];
 
     protected $config;
