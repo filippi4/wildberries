@@ -40,19 +40,21 @@ class WildberriesAdvert extends WildberriesAdvertClient
      * @return array
      */
     public function getAdverts(
-        int    $status = null,
-        int    $type = null,
-        int    $limit = null,
-        int    $offset = null,
+        int $status = null,
+        int $type = null,
+        int $limit = null,
+        int $offset = null,
         string $order = null,
         string $direction = null,
-    ): mixed
-    {
-        return (new WildberriesData($this->getResponse(
-            'adv/v0/adverts',
-            array_diff(compact('status', 'type', 'limit', 'offset', 'order', 'direction'), [''])
-        )
-        ))->data;
+    ): mixed {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v0/adverts',
+                    array_diff(compact('status', 'type', 'limit', 'offset', 'order', 'direction'), [''])
+                )
+            )
+        )->data;
     }
 
     /**
@@ -218,6 +220,26 @@ class WildberriesAdvert extends WildberriesAdvertClient
             new WildberriesData(
                 $this->getResponse(
                     'adv/v1/upd',
+                    array_diff(compact('from', 'to'), [''])
+                )
+            )
+        )->data;
+    }
+
+    /**
+     * Метод позволяет получать историю затрат
+     *
+     * @param string $from
+     * @param string $to
+     * @return mixed
+     */
+
+    public function getDepositHistory(string $from, string $to): mixed
+    {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v1/payments',
                     array_diff(compact('from', 'to'), [''])
                 )
             )
