@@ -227,7 +227,7 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Метод позволяет получать историю затрат
+     * Метод позволяет получать историю пополнения счета
      *
      * @param string $from
      * @param string $to
