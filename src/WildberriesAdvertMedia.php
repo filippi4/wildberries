@@ -38,6 +38,22 @@ class WildberriesAdvertMedia extends WildberriesAdvertMediaClient
             )
         )->data;
     }
+
+    /**
+     * Метод позволяет получить статистику медиакампаний продавца.
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function getMediaStat(int $id): mixed
+    {
+        return
+            $this->postResponse(
+                'adv/v1/stats',
+                array_diff(compact('id'), [''])
+            );
+    }
+
     /**
      * Метод позволяет получить информацию об одной медиакампании
      *
