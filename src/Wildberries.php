@@ -53,6 +53,13 @@ class Wildberries extends WildberriesClient
         )->data;
     }
 
+    public function getOffices(): mixed
+    {
+        return (new WildberriesData($this->getResponse(
+            'api/v3/offices'
+        )))->data;
+    }
+
     /**
      * Возвращает остатки товаров.
      *
