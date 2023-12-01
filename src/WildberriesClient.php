@@ -4,6 +4,9 @@ namespace Filippi4\Wildberries;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Exception;
+use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class WildberriesClient
 {
@@ -86,4 +89,45 @@ class WildberriesClient
 
         return WildberriesRequest::makeRequest($full_path, $options, 'post');
     }
+
+    /**
+     * Create GET request to bank API
+     *
+     * @param string|null $uri
+     * @param array $params
+     * @param bool $is_stat
+     * @return mixed
+     */
+    protected function getResponseWithJson(string $uri = null, array $params = [], bool $is_stat = false): mixed
+    {
+        $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
+
+        $result = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'Authorization' => $is_stat ? $this->config['token_api_stat'] : $this->config['token_api']
+        ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->get($full_path, ['timeout' => 100,]);
+        if (!$result->ok()) {
+            throw new Exception($result->body());
+        }
+
+        return $result->json();
+    }
+
+    protected function postResponseWithJson(string $uri = null, array $params = [], bool $is_stat = false): mixed
+    {
+        $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
+        dump(json_encode($params, JSON_UNESCAPED_UNICODE));
+        $result = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'Authorization' => $is_stat ? $this->config['token_api_stat'] : $this->config['token_api']
+        ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->post($full_path);
+
+        if (!$result->created()) {
+            throw new Exception($result->body());
+        }
+        return $result->json();
+    }
+
 }
