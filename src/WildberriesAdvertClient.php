@@ -65,4 +65,18 @@ class WildberriesAdvertClient
 
         return WildberriesRequest::makeRequest($full_path, $options, 'get');
     }
+
+    protected function postResponse(string $uri = null, array $params = []): WildberriesResponse
+    {
+        $full_path = self::ADVERT_URL . $uri;
+        $options = self::DEFAULT_OPTIONS;
+
+        $options['headers']['Authorization'] = $this->config['token_api_adv'];
+
+        if (count($params)) {
+            $options['json'] = $params;
+        }
+
+        return WildberriesRequest::makeRequest($full_path, $options, 'post');
+    }
 }
