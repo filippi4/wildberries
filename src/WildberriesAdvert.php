@@ -33,8 +33,6 @@ class WildberriesAdvert extends WildberriesAdvertClient
      *
      * @param ?int $status
      * @param ?int $type
-     * @param ?int $limit
-     * @param ?int $offset
      * @param ?string $order
      * @param ?string $direction
      * @return array
@@ -42,16 +40,27 @@ class WildberriesAdvert extends WildberriesAdvertClient
     public function getAdverts(
         int $status = null,
         int $type = null,
-        int $limit = null,
-        int $offset = null,
         string $order = null,
         string $direction = null,
     ): mixed {
         return (
             new WildberriesData(
+                $this->postGetAdvertsResponse(
+                    'adv/v1/promotion/adverts',
+                    array_diff(compact('status', 'type', 'order', 'direction'), [''])
+                )
+            )
+        )->data;
+    }
+
+    /**
+     * Получение кол-ва РК поставщика
+     */
+    public function getPromotionCount(): mixed {
+        return (
+            new WildberriesData(
                 $this->getResponse(
-                    'adv/v0/adverts',
-                    array_diff(compact('status', 'type', 'limit', 'offset', 'order', 'direction'), [''])
+                    'adv/v1/promotion/count'
                 )
             )
         )->data;
