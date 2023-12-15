@@ -762,4 +762,15 @@ class Wildberries extends WildberriesClient
         $params = compact('id');
         return $this->getResponseWithJson('api/v1/delayed-gen/tasks/download', $params, true);
     }
+
+    /**
+     * @param int $fromID 
+     * @return mixed
+     */
+    public function getNews(
+        string $fromID = null
+    ): mixed {
+        $params = compact('fromID');
+        return (new WildberriesData($this->getResponse('api/communications/v1/news', $params, false)))->data;
+    }
 }
