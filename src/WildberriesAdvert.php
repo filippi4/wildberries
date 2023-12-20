@@ -67,6 +67,33 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
+     * Получение списка предметов продавца
+     */
+    public function getSuplierSubject(): mixed {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v1/supplier/subjects'
+                )
+            )
+        )->data;
+    }
+
+    /**
+     * Получение списка Артикулов WB (nmId) продавца по ID предмета
+     */
+    public function getSuplierNm(int $subject): mixed {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'adv/v1/supplier/nms',
+                    compact('subject')
+                )
+            )
+        )->data;
+    }
+
+    /**
      * Получение информации об одной РК
      *
      * @param int $id
