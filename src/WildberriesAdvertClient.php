@@ -4,6 +4,8 @@ namespace Filippi4\Wildberries;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Http;
+use Exception;
 
 class WildberriesAdvertClient
 {
@@ -16,8 +18,8 @@ class WildberriesAdvertClient
 
     private const DEFAULT_OPTIONS = [
         'headers' => self::DEFAULT_HEADER,
-        'timeout' => 50,
-        'connect_timeout' => 50,
+        'timeout' => 70,
+        'connect_timeout' => 70,
     ];
 
     protected $config;
@@ -77,5 +79,53 @@ class WildberriesAdvertClient
         }
 
         return WildberriesRequest::makeRequest($full_path, $options, 'post');
+    }
+
+
+    /**
+     * Create GET request to bank API
+     *
+     * @param string|null $uri
+     * @param array $params
+     * @return mixed
+     */
+    protected function getResponseWithJson(string $uri = null, array $params = []): mixed
+    {
+        $full_path = self::ADVERT_URL . $uri;
+
+        $response = Http::timeout(60)->withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'Authorization' => $this->config['token_api_adv']
+        ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->get($full_path);
+
+        if ($response->status() > 399) {
+            throw new Exception('Response status: ' . $response->status() . ' | Message: ' . json_encode($response->json(), JSON_UNESCAPED_UNICODE) . $response->body());
+        }
+
+        return $response->json();
+    }
+    /**
+     * Create POST request to bank API
+     *
+     * @param string|null $uri
+     * @param array $params
+     * @return mixed
+     */
+    protected function postResponseWithJson(string $uri = null, array $params = []): mixed
+    {
+        $full_path = self::ADVERT_URL . $uri;
+
+        $response = Http::timeout(60)->withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'Authorization' => $this->config['token_api_adv']
+        ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->post($full_path);
+
+
+        if ($response->status() > 399) {
+            throw new Exception('Response status: ' . $response->status() . ' | Message: ' . json_encode($response->json(), JSON_UNESCAPED_UNICODE) . $response->body());
+        }
+        return $response->json();
     }
 }

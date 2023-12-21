@@ -56,7 +56,8 @@ class WildberriesAdvert extends WildberriesAdvertClient
     /**
      * Получение кол-ва РК поставщика
      */
-    public function getPromotionCount(): mixed {
+    public function getPromotionCount(): mixed
+    {
         return (
             new WildberriesData(
                 $this->getResponse(
@@ -205,6 +206,18 @@ class WildberriesAdvert extends WildberriesAdvertClient
     public function getFullstat(int $id): mixed
     {
         return (new WildberriesData($this->getResponse('adv/v1/fullstat', compact('id'))))->data;
+    }
+
+    /**
+     * Метод позволяет получать статистку кампании, разделенную по дням, номенклатурам
+     * и платформам (сайт, андроид, IOS)
+     *
+     * @param array $advertIds
+     * @return mixed
+     */
+    public function getFullstats(array $advertIds): mixed
+    {
+        return $this->postResponseWithJson('adv/v2/fullstats', $advertIds);
     }
 
     /**

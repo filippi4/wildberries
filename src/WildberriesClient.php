@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Exception;
 use Illuminate\Support\Facades\Http;
-use Carbon\Carbon;
 
 class WildberriesClient
 {
@@ -102,32 +101,33 @@ class WildberriesClient
     {
         $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
 
-        $result = Http::withHeaders([
+        $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'Authorization' => $is_stat ? $this->config['token_api_stat'] : $this->config['token_api']
         ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->get($full_path, ['timeout' => 100,]);
-        if (!$result->ok()) {
-            throw new Exception($result->body());
+
+        if ($response->status() > 399) {
+            throw new Exception('Response status: ' . $response->status() . ' | Message: ' . json_encode($response->json(), JSON_UNESCAPED_UNICODE) . $response->body());
         }
 
-        return $result->json();
+        return $response->json();
     }
 
     protected function postResponseWithJson(string $uri = null, array $params = [], bool $is_stat = false): mixed
     {
         $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
-        dump(json_encode($params, JSON_UNESCAPED_UNICODE));
-        $result = Http::withHeaders([
+
+        $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'Authorization' => $is_stat ? $this->config['token_api_stat'] : $this->config['token_api']
         ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->post($full_path);
 
-        if (!$result->created()) {
-            throw new Exception($result->body());
+        if ($response->status() > 399) {
+            throw new Exception('Response status: ' . $response->status() . ' | Message: ' . json_encode($response->json(), JSON_UNESCAPED_UNICODE) . $response->body());
         }
-        return $result->json();
+        return $response->json();
     }
 
 }
