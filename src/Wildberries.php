@@ -56,10 +56,13 @@ class Wildberries extends WildberriesClient
 
     public function getOffices(): mixed
     {
-        return (new WildberriesData($this->getResponse(
-            'api/v3/offices'
-        )
-        ))->data;
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'api/v3/offices'
+                )
+            )
+        )->data;
     }
 
     /**
@@ -772,5 +775,22 @@ class Wildberries extends WildberriesClient
     ): mixed {
         $params = compact('fromID');
         return (new WildberriesData($this->getResponse('api/communications/v1/news', $params, false)))->data;
+    }
+
+    /**
+     * @param int $limit
+     * @param int $next
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return mixed
+     */
+    public function getAssemblyTasks(
+        int $limit,
+        int $next,
+        string $dateFrom,
+        string $dateTo
+    ): mixed {
+        $params = compact('limit', 'next', 'dateFrom', 'dateTo');
+        return (new WildberriesData($this->getResponse('api/v3/orders', $params, false)))->data;
     }
 }
