@@ -1,43 +1,45 @@
 {
-    "name": "filippi4/wildberries",
-    "description": "Implementation of API methods Wildberries for Laravel.",
-    "minimum-stability": "stable",
-    "license": "proprietary",
-    "authors": [
-        {
-            "name": "Filippov K.",
-            "email": "filippovk997@mail.ru"
-        }
-    ],
-    "require": {
-        "php": "^8.1",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^10.7.1",
-        "ext-json": "*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^10.0",
-        "sebastian/version": "^4.0.1"
-    },
-    "autoload": {
-        "psr-4": {
-        "Filippi4\\Wildberries\\": "src/"
+  "name": "filippi4/wildberries",
+  "description": "Implementation of API methods Wildberries for Laravel.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Filippov K.",
+      "email": "filippovk997@mail.ru"
     }
-    },
-    "extra": {
-        "laravel":{
-            "providers": [
-                "Filippi4\\Wildberries\\WildberriesServiceProvider",
-                "Filippi4\\Wildberries\\WildberriesAdvertServiceProvider",
-                "Filippi4\\Wildberries\\WildberriesAdvertMediaServiceProvider",
-                "Filippi4\\Wildberries\\WildberriesFeedbacksServiceProvider"
-            ],
-            "aliases": {
-                "Wildberries": "Filippi4\\Wildberries\\Facades\\Wildberries",
-                "WildberriesAdvert": "Filippi4\\Wildberries\\Facades\\WildberriesAdvert",
-                "WildberriesAdvertMedia": "Filippi4\\Wildberries\\Facades\\WildberriesAdvertMedia",
-                "WildberriesFeedbacks": "Filippi4\\Wildberries\\Facades\\WildberriesFeedbacksServiceProvider"
-            }
-        }
+  ],
+  "require": {
+    "php": "^8.1",
+    "guzzlehttp/guzzle": "^7.2",
+    "laravel/framework": "^10.7.1",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
+    "sebastian/version": "^4.0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Filippi4\\Wildberries\\": "src/"
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Filippi4\\Wildberries\\WildberriesServiceProvider",
+        "Filippi4\\Wildberries\\WildberriesAdvertServiceProvider",
+        "Filippi4\\Wildberries\\WildberriesAdvertMediaServiceProvider",
+        "Filippi4\\Wildberries\\WildberriesFeedbacksServiceProvider",
+        "Filippi4\\Wildberries\\WildberriesCommonServiceProvider"
+      ],
+      "aliases": {
+        "Wildberries": "Filippi4\\Wildberries\\Facades\\Wildberries",
+        "WildberriesAdvert": "Filippi4\\Wildberries\\Facades\\WildberriesAdvert",
+        "WildberriesAdvertMedia": "Filippi4\\Wildberries\\Facades\\WildberriesAdvertMedia",
+        "WildberriesFeedbacks": "Filippi4\\Wildberries\\Facades\\WildberriesFeedbacksServiceProvider",
+        "WildberriesCommon": "Filippi4\\Wildberries\\Facades\\WildberriesCommonServiceProvider"
+      }
+    }
+  }
 }
