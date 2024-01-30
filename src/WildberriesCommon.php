@@ -20,9 +20,9 @@ class WildberriesCommon extends WildberriesCommonClient
      * Получение информации по тарифам для коробов.
      *
      * @param string $date 
-     * @return array
+     * @return mixed
      */
-    public function getInfo(string $date): array
+    public function getTariffsBox(string $date): mixed
     {
         return (
             new WildberriesData(

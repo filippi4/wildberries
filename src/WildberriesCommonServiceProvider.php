@@ -23,7 +23,7 @@ class WildberriesCommonServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('wildberries_common', function () {
-            return new Wildberries();
+            return new WildberriesCommon();
         });
     }
 }
