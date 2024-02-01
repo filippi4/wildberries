@@ -63,8 +63,8 @@ class WildberriesFeedbacks extends WildberriesFeedbacksClient
      *
      * @return mixed
      */
-    public function getFeedbacks(bool $isAnswered, bool $hasSupplierComplaint, int $nmId, int $take, int $skip, string $order): mixed
+    public function getFeedbacks(bool $isAnswered, int $take, int $skip, string $order, int $dateFrom): mixed
     {
-        return (new WildberriesData($this->getResponse('api/v1/feedbacks', compact('isAnswered', 'hasSupplierComplaint', 'nmId', 'take', 'skip', 'order'))))->data;
+        return (new WildberriesData($this->getResponse('api/v1/feedbacks', compact('isAnswered', 'take', 'skip', 'order', 'dateFrom'))))->data;
     }
 }
