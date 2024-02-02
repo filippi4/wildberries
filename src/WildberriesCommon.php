@@ -33,4 +33,22 @@ class WildberriesCommon extends WildberriesCommonClient
             )
         )->data;
     }
+
+    /**
+     * Получение информации по тарифам для монопалет.
+     *
+     * @param string $date
+     * @return mixed
+     */
+    public function getTariffsPallet(string $date): mixed
+    {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'api/v1/tariffs/pallet',
+                    compact('date')
+                )
+            )
+        )->data;
+    }
 }
