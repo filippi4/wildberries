@@ -67,4 +67,14 @@ class WildberriesFeedbacks extends WildberriesFeedbacksClient
     {
         return (new WildberriesData($this->getResponse('api/v1/feedbacks', compact('isAnswered', 'take', 'skip', 'order', 'dateFrom'))))->data;
     }
+    /**
+     *
+     * Получение списка отзывов по заданным параметрам с пагинацией и сортировкой
+     *
+     * @return mixed
+     */
+    public function getFeedbacksArchive(bool $isAnswered, int $take, int $skip, string $order, int $dateFrom): mixed
+    {
+        return (new WildberriesData($this->getResponse('api/v1/feedbacks/archive', compact('isAnswered', 'take', 'skip', 'order', 'dateFrom'))))->data;
+    }
 }
