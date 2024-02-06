@@ -77,4 +77,15 @@ class WildberriesFeedbacks extends WildberriesFeedbacksClient
     {
         return (new WildberriesData($this->getResponse('api/v1/feedbacks/archive', compact('take', 'skip', 'order', 'dateFrom'))))->data;
     }
+
+    /**
+     *
+     * Получение списка вопросов по заданным параметрам с пагинацией и сортировкой
+     *
+     * @return mixed
+     */
+    public function getQuestions(bool $isAnswered, int $take, int $skip, string $order, int $dateFrom): mixed
+    {
+        return (new WildberriesData($this->getResponse('api/v1/questions', compact('isAnswered', 'take', 'skip', 'order', 'dateFrom'))))->data;
+    }
 }
