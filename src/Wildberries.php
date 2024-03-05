@@ -24,7 +24,7 @@ class Wildberries extends WildberriesClient
      */
     public function getInfo(int $quantity = 0): array
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'public/api/v1/info',
@@ -44,7 +44,7 @@ class Wildberries extends WildberriesClient
      */
     public function getStocks(int $skip, int $take, string $search = null): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v2/stocks',
@@ -56,7 +56,7 @@ class Wildberries extends WildberriesClient
 
     public function getOffices(): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v3/offices'
@@ -74,7 +74,7 @@ class Wildberries extends WildberriesClient
      */
     public function getStocksV3(int $warehouse, array $skus): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->postResponse(
                     'api/v3/stocks/' . $warehouse,
@@ -108,7 +108,7 @@ class Wildberries extends WildberriesClient
         $date_start = $date_start->format($is_UTC ? 'Y-m-d\TH:i:s\Z' : 'Y-m-d\TH:i:s');
         $date_end = $date_end ? $date_end->format($is_UTC ? 'Y-m-d\TH:i:s\Z' : 'Y-m-d\TH:i:s') : null;
 
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v2/orders',
@@ -126,7 +126,7 @@ class Wildberries extends WildberriesClient
      */
     public function getSupplies(string $status = 'ACTIVE'): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v2/supplies',
@@ -143,7 +143,7 @@ class Wildberries extends WildberriesClient
      */
     public function getWarehouses(): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v3/warehouses'
@@ -172,7 +172,7 @@ class Wildberries extends WildberriesClient
      */
     public function getSupplierIncomes(DateTime $dateFrom, bool $is_UTC = false): array
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v1/supplier/incomes',
@@ -220,7 +220,7 @@ class Wildberries extends WildberriesClient
     {
         $params = compact('flag');
         $params['dateFrom'] = $dateFrom->format($is_UTC ? 'Y-m-d\TH:i:s\Z' : 'Y-m-d\TH:i:s');
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v1/supplier/sales',
@@ -242,7 +242,7 @@ class Wildberries extends WildberriesClient
      */
     public function getObjectAll(string $name = null, int $top = null): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/object/all',
@@ -260,7 +260,7 @@ class Wildberries extends WildberriesClient
      */
     public function getCardsErrorList(): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/cards/error/list'
@@ -276,7 +276,7 @@ class Wildberries extends WildberriesClient
      */
     public function getObjectParentAll(): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/object/parent/all'
@@ -294,7 +294,7 @@ class Wildberries extends WildberriesClient
      */
     public function getObjectCharacteristicsListFilter(string $name = null): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/object/characteristics/list/filter',
@@ -313,7 +313,7 @@ class Wildberries extends WildberriesClient
      */
     public function getObjectCharacteristicsObjectName(string $objectName): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/object/characteristics/' . $objectName,
@@ -332,7 +332,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectoryColors(): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/colors'
@@ -348,7 +348,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectoryKinds(): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/kinds'
@@ -364,7 +364,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectoryCountries(): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/countries'
@@ -384,7 +384,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectoryCollections(int $top = null, string $pattern = null): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/collections',
@@ -401,7 +401,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectorySeasons(): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/seasons'
@@ -421,7 +421,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectoryContents(int $top = null, string $pattern = null): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/contents',
@@ -442,7 +442,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectoryConsists(int $top = null, string $pattern = null): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/consists',
@@ -463,7 +463,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectoryBrands(int $top = null, string $pattern = null): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/brands',
@@ -484,7 +484,7 @@ class Wildberries extends WildberriesClient
      */
     public function getDirectoryTnved(string $objectName = null, string $tnvedsLike = null): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'content/v1/directory/tnved',
@@ -507,7 +507,7 @@ class Wildberries extends WildberriesClient
      */
     public function getSuppliesIdBarcode(string $id, string $type): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     '/api/v2/supplies/' . $id . '/barcode',
@@ -528,7 +528,7 @@ class Wildberries extends WildberriesClient
      */
     public function getSuppliesIdOrders(string $id): mixed
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     '/api/v2/supplies/' . $id . '/orders'
@@ -557,7 +557,7 @@ class Wildberries extends WildberriesClient
      */
     public function getSupplierStocks(DateTime $dateFrom, bool $is_UTC = false): array
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v1/supplier/stocks',
@@ -603,7 +603,7 @@ class Wildberries extends WildberriesClient
     {
         $props = compact('flag');
         $props['dateFrom'] = $dateFrom->format($is_UTC ? 'Y-m-d\TH:i:s\Z' : 'Y-m-d\TH:i:s');
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v1/supplier/orders',
@@ -647,10 +647,10 @@ class Wildberries extends WildberriesClient
         $props = compact('limit', 'rrdid');
         $props['dateFrom'] = $dateFrom->format($is_UTC ? 'Y-m-d\TH:i:s\Z' : 'Y-m-d\TH:i:s');
         $props['dateTo'] = $dateTo->format($is_UTC ? 'Y-m-d\TH:i:s\Z' : 'Y-m-d\TH:i:s');
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
-                    'api/v2/supplier/reportDetailByPeriod',
+                    'api/v3/supplier/reportDetailByPeriod',
                     $props,
                     true
                 )
@@ -680,7 +680,7 @@ class Wildberries extends WildberriesClient
      */
     public function getSupplierExciseGoods(DateTime $dateFrom, bool $is_UTC = false): array
     {
-        return (
+        return(
             new WildberriesData(
                 $this->getResponse(
                     'api/v1/supplier/excise-goods',
@@ -697,7 +697,7 @@ class Wildberries extends WildberriesClient
     {
         $props = compact('nmIDs', 'period');
 
-        return (new WildberriesData($this->postResponse('content/v1/analytics/nm-report/detail/history', $props)))->data;
+        return(new WildberriesData($this->postResponse('content/v1/analytics/nm-report/detail/history', $props)))->data;
     }
 
 
@@ -734,7 +734,7 @@ class Wildberries extends WildberriesClient
                 ]
             ];
         }
-        return (new WildberriesData($this->postResponse('content/v1/cards/cursor/list', $props)))->data;
+        return(new WildberriesData($this->postResponse('content/v1/cards/cursor/list', $props)))->data;
     }
 
 
@@ -774,7 +774,7 @@ class Wildberries extends WildberriesClient
         string $fromID = null
     ): mixed {
         $params = compact('fromID');
-        return (new WildberriesData($this->getResponse('api/communications/v1/news', $params, false)))->data;
+        return(new WildberriesData($this->getResponse('api/communications/v1/news', $params, false)))->data;
     }
 
     /**
@@ -791,6 +791,6 @@ class Wildberries extends WildberriesClient
         string $dateTo
     ): mixed {
         $params = compact('limit', 'next', 'dateFrom', 'dateTo');
-        return (new WildberriesData($this->getResponse('api/v3/orders', $params, false)))->data;
+        return(new WildberriesData($this->getResponse('api/v3/orders', $params, false)))->data;
     }
 }
