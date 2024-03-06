@@ -24,8 +24,7 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         $dateFrom = $dateFrom->toDateString();
         $dateTo = $dateTo->toDateString();
         $params = compact('dateFrom', 'dateTo');
-        $params = compact('type', 'params');
-        return $this->getResponseWithJson('api/v1/paid_storage', $params);
+        return(new WildberriesData($this->getResponse('api/v1/paid_storage', $params)))->data;
     }
 
 
