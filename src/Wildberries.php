@@ -738,34 +738,6 @@ class Wildberries extends WildberriesClient
     }
 
 
-    public function getPaidStorages(
-        Carbon $dateFrom = null,
-        Carbon $dateTo = null,
-        string $type = 'paid_storage'
-    ): mixed {
-        $dateFrom = $dateFrom->toDateString();
-        $dateTo = $dateTo->toDateString();
-        $params = compact('dateFrom', 'dateTo');
-        $params = compact('type', 'params');
-        return $this->postResponseWithJson('api/v1/delayed-gen/tasks/create', $params, true);
-    }
-
-
-    public function getReportStatus(
-        array $ids = []
-    ): mixed {
-        $params = ['ids' => $ids];
-
-        return $this->getResponseWithJson('api/v1/delayed-gen/tasks', $params, true);
-    }
-
-    public function getReport(
-        string $id = null
-    ): mixed {
-        $params = compact('id');
-        return $this->getResponseWithJson('api/v1/delayed-gen/tasks/download', $params, true);
-    }
-
     /**
      * @param int $fromID 
      * @return mixed

@@ -4,7 +4,7 @@ namespace Filippi4\Wildberries;
 
 use Illuminate\Support\ServiceProvider;
 
-class WildberriesServiceProvider extends ServiceProvider
+class WildberriesSellerAnalyticsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -22,8 +22,8 @@ class WildberriesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('wildberries', function () {
-            return new Wildberries();
+        $this->app->bind('wildberries_seller_analytics', function () {
+            return new WildberriesSellerAnalytics();
         });
     }
 }
