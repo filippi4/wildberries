@@ -24,7 +24,7 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         $dateFrom = $dateFrom->toDateString();
         $dateTo = $dateTo->toDateString();
         $params = compact('dateFrom', 'dateTo');
-        return(new WildberriesData($this->getResponse('api/v1/paid_storage', $params)))->data;
+        return (new WildberriesData($this->getResponse('api/v1/paid_storage', $params)))->data;
     }
 
 
@@ -39,5 +39,13 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         string $id
     ): mixed {
         return $this->getResponseWithJson('api/v1/paid_storage/tasks/' . $id . '/download', []);
+    }
+
+
+    public function getContentHistoryNmid(array $nmIDs, $period): mixed
+    {
+        $props = compact('nmIDs', 'period');
+
+        return (new WildberriesData($this->postResponse('api/v2/nm-report/detail/history', $props)))->data;
     }
 }
