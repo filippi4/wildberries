@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class WildberriesDiscountsPrices extends WildberriesDiscountsPricesClient
 {
-    public function config(array $keys): Wildberries
+    public function config(array $keys): WildberriesDiscountsPrices
     {
         $this->validateKeys($keys);
 
