@@ -23,7 +23,7 @@ class WildberriesDiscountsPricesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('wildberries_discounts_prices', function () {
-            return new Wildberries();
+            return new WildberriesDiscountsPrices();
         });
     }
 }
