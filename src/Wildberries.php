@@ -650,7 +650,7 @@ class Wildberries extends WildberriesClient
         return (
             new WildberriesData(
                 $this->getResponse(
-                    'api/v3/supplier/reportDetailByPeriod',
+                    'api/v5/supplier/reportDetailByPeriod',
                     $props,
                     true
                 )
