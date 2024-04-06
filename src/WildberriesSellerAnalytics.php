@@ -27,6 +27,27 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return (new WildberriesData($this->getResponse('api/v1/paid_storage', $params)))->data;
     }
 
+    public function getIncorrectAttachments(
+        Carbon $dateFrom = null,
+        Carbon $dateTo = null,
+    ): mixed {
+        $dateFrom = $dateFrom->toDateString();
+        $dateTo = $dateTo->toDateString();
+        $params = compact('dateFrom', 'dateTo');
+        return (new WildberriesData($this->getResponse('api/v1/analytics/incorrect-attachments', $params)))->data;
+    }
+
+
+    public function getAcceptanceReports(
+        Carbon $dateFrom = null,
+        Carbon $dateTo = null,
+    ): mixed {
+        $dateFrom = $dateFrom->toDateString();
+        $dateTo = $dateTo->toDateString();
+        $params = compact('dateFrom', 'dateTo');
+        return (new WildberriesData($this->getResponse('api/v1/analytics/acceptance-report', $params)))->data;
+    }
+
 
     public function getReportStatus(
         string $id
