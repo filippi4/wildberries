@@ -728,7 +728,7 @@ class Wildberries extends WildberriesClient
                 ]
             ];
         }
-        return (new WildberriesData($this->postResponse('content/v1/cards/cursor/list', $props)))->data;
+        return (new WildberriesData($this->postResponse('content/v2/get/cards/list', $props)))->data;
     }
 
 
