@@ -69,4 +69,11 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
 
         return (new WildberriesData($this->postResponse('api/v2/nm-report/detail/history', $props)))->data;
     }
+
+    public function getStorageCoefficient($date): mixed
+    {
+        $props = compact('date');
+
+        return (new WildberriesData($this->getResponse('api/v1/analytics/storage-coefficient', $props)))->data;
+    }
 }
