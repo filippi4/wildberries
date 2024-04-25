@@ -694,41 +694,24 @@ class Wildberries extends WildberriesClient
     }
 
 
-
     /**
      * @param int $limit
-     * @param string $updatedAt
-     * @param int $nmID
      * @return mixed
      */
-    public function getCardsCursorList(int $limit, string $updatedAt = '', int $nmID = null): mixed
+    public function getCardsCursorList(int $limit): mixed
     {
-        if ($nmID) {
-            $props = [
-                'sort' => [
-                    'cursor' => [
-                        'limit' => $limit,
-                        'updatedAt' => $updatedAt,
-                        'nmID' => $nmID
-                    ],
-                    "filter" => [
-                        "withPhoto" => -1
-                    ]
+
+        $props = [
+            'settings' => [
+                'cursor' => [
+                    'limit' => $limit,
+                ],
+                "filter" => [
+                    "withPhoto" => -1
                 ]
-            ];
-        } else {
-            $props = [
-                'sort' => [
-                    'cursor' => [
-                        'limit' => $limit,
-                    ],
-                    "filter" => [
-                        "withPhoto" => -1
-                    ]
-                ]
-            ];
-        }
-        return (new WildberriesData($this->postResponse('content/v2/get/cards/list', $props)))->data;
+            ]
+        ];
+        return $this->postResponseWithJson('content/v2/get/cards/list', $props);
     }
 
 
