@@ -69,4 +69,21 @@ class WildberriesCommon extends WildberriesCommonClient
             )
         )->data;
     }
+    /**
+     * Получение информации по тарифам для монопалет.
+     *
+     * @param string $locale
+     * @return mixed
+     */
+    public function getTariffsCommissions(string $locale = 'ru'): mixed
+    {
+        return (
+            new WildberriesData(
+                $this->getResponse(
+                    'api/v1/tariffs/commission',
+                    compact('locale')
+                )
+            )
+        )->data;
+    }
 }
