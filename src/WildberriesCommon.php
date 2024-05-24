@@ -70,7 +70,7 @@ class WildberriesCommon extends WildberriesCommonClient
         )->data;
     }
     /**
-     * Получение информации по тарифам для монопалет.
+     * Получение комиссии по категориям товаров.
      *
      * @param string $locale
      * @return mixed
