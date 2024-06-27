@@ -70,6 +70,63 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return (new WildberriesData($this->postResponse('api/v2/nm-report/detail/history', $props)))->data;
     }
 
+    /**
+     * Creates a Djem report for a given NM ID, report type, start date, and end date.
+     *
+     * @param string $id The ID of the NM.
+     * @param string $reportType The type of report.
+     * @param string $startDate The start date of the report.
+     * @param string $endDate The end date of the report.
+     * @return mixed The response from the API call.
+     */
+    public function createNmDjemReport(string $id, string $reportType, string $startDate, string $endDate): mixed
+    {
+        $params = [
+            'id' => $id,
+            'reportType' => $reportType,
+            "userReportName" => "Card report",
+            "params" => [
+                "startDate" => $startDate,
+                "endDate" => $endDate,
+                "nmIDs" => [],
+                "subjectIDs" => [],
+                "brandNames" => [],
+                "tagIDs" => [],
+                "timezone" => "Europe/Moscow",
+                "aggregationLevel" => "day",
+                "skipDeletedNms" => false
+            ]
+        ];
+
+        return $this->postResponseWithJson('api/v2/nm-report/downloads', $params);
+    }
+
+
+    /**
+     * Retrieves the status of the Djem report for the given ID.
+     *
+     * @param string $id The ID of the Djem report.
+     * @return mixed The data containing the Djem report status.
+     */
+    public function getNmDjemReportStatus(string $id): mixed
+    {
+        $props = ['filter' => ['downloadIds' => [$id]]];
+
+        return (new WildberriesData($this->getResponse('api/v2/nm-report/downloads', $props)))->data;
+    }
+
+    /**
+     * Retrieves the Djem report for the given ID.
+     *
+     * @param string $id The ID of the Djem report.
+     * @return mixed The Djem report file.
+     */
+    public function getNmDjemReport(string $id): mixed
+    {
+        return $this->getFile('api/v2/nm-report/downloads/file/' . $id);
+    }
+
+
     public function getStorageCoefficient($date): mixed
     {
         $props = compact('date');

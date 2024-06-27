@@ -128,4 +128,40 @@ class WildberriesSellerAnalyticsClient
         return $response->json();
     }
 
+    /**
+     * Get file
+     *
+     * @param string|null $uri
+     * @param array $params
+     * @return mixed
+     */
+    protected function getFile(string $uri = null, array $params = []): mixed
+    {
+        $full_path = self::URL . $uri;
+
+        $ch = curl_init($full_path);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: ' . $this->config['token_api']]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+
+        $zip = new \ZipArchive;
+        file_put_contents(storage_path() . '/file.zip', curl_exec($ch));
+        curl_close($ch);
+        $res = $zip->open(storage_path() . '/file.zip');
+
+        $fileName = null;
+        if ($res === TRUE) {
+            $fileName = $zip->getNameIndex(0);
+            $zip->extractTo(storage_path() . '/');
+            $zip->close();
+            try {
+                unlink(storage_path() . '/file.zip');
+            } catch (\Throwable $e) {
+                dump($e->getMessage());
+            }
+        }
+
+        return $fileName;
+    }
 }
