@@ -3,6 +3,7 @@
 namespace Filippi4\Wildberries;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Exception;
 use Illuminate\Support\Facades\Http;
@@ -146,9 +147,10 @@ class WildberriesSellerAnalyticsClient
         curl_setopt($ch, CURLOPT_HEADER, 0);
 
         $zip = new \ZipArchive;
-        file_put_contents(storage_path() . '/file.zip', curl_exec($ch));
+        $zipFileName = Str::random(10) . '_file.zip';
+        file_put_contents(storage_path() . '/' . $zipFileName, curl_exec($ch));
         curl_close($ch);
-        $res = $zip->open(storage_path() . '/file.zip');
+        $res = $zip->open(storage_path() . '/' . $zipFileName);
 
         $fileName = null;
         if ($res === TRUE) {
@@ -156,7 +158,7 @@ class WildberriesSellerAnalyticsClient
             $zip->extractTo(storage_path() . '/');
             $zip->close();
             try {
-                unlink(storage_path() . '/file.zip');
+                unlink(storage_path() . '/' . $zipFileName);
             } catch (\Throwable $e) {
                 dump($e->getMessage());
             }
