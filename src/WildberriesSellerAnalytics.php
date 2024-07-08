@@ -71,6 +71,21 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     }
 
     /**
+     * Retrieves the detailed report for the specified nmIDs, period, and page.
+     *
+     * @param array $nmIDs The array of nmIDs to retrieve the report for.
+     * @param mixed $period The period for which the report is requested.
+     * @param mixed $page The page number for pagination.
+     * @return mixed The data containing the detailed report.
+     */
+    public function getNmReportDetail(array $nmIDs, $period, $page): mixed
+    {
+        $props = compact('nmIDs', 'period', 'page');
+
+        return (new WildberriesData($this->postResponse('api/v2/nm-report/detail', $props)))->data;
+    }
+
+    /**
      * Creates a Djem report for a given NM ID, report type, start date, and end date.
      *
      * @param string $id The ID of the NM.
