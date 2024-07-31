@@ -133,4 +133,15 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
 
         return (new WildberriesData($this->getResponse('api/v1/analytics/storage-coefficient', $props)))->data;
     }
+
+    public function getSalesReportsByRegion(
+        Carbon $dateFrom = null,
+        Carbon $dateTo = null
+    )
+    {
+        $dateFrom = $dateFrom->toDateString();
+        $dateTo = $dateTo->toDateString();
+        $params = compact('dateFrom', 'dateTo');
+        return (new WildberriesData($this->getResponse('api/v1/analytics/region-sale', $params)))->data;
+    }
 }
