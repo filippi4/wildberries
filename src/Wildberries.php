@@ -758,4 +758,13 @@ class Wildberries extends WildberriesClient
         $params = compact('limit', 'next', 'dateFrom', 'dateTo');
         return (new WildberriesData($this->getResponse('api/v3/orders', $params, false)))->data;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getListOfNewAssemblyTasks(): mixed
+    {
+        return (new WildberriesData($this->getResponse('api/v3/orders/new')))->data;
+    }
+
 }
