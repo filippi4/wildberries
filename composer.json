@@ -34,7 +34,8 @@
         "Filippi4\\Wildberries\\WildberriesCommonServiceProvider",
         "Filippi4\\Wildberries\\WildberriesSellerAnalyticsServiceProvider",
         "Filippi4\\Wildberries\\WildberriesDiscountsPricesServiceProvider",
-        "Filippi4\\Wildberries\\WildberriesSuppliesServiceProvider"
+        "Filippi4\\Wildberries\\WildberriesSuppliesServiceProvider",
+        "Filippi4\\Wildberries\\WildberriesContentServiceProvider"
       ],
       "aliases": {
         "Wildberries": "Filippi4\\Wildberries\\Facades\\Wildberries",
@@ -44,7 +45,8 @@
         "WildberriesCommon": "Filippi4\\Wildberries\\Facades\\WildberriesCommonServiceProvider",
         "WildberriesSellerAnalytics": "Filippi4\\Wildberries\\Facades\\WildberriesSellerAnalyticsServiceProvider",
         "WildberriesDiscountsPrices": "Filippi4\\Wildberries\\Facades\\WildberriesDiscountsPricesServiceProvider",
-        "WildberriesSuppliesPrices": "Filippi4\\Wildberries\\Facades\\WildberriesSuppliesServiceProvider"
+        "WildberriesSuppliesPrices": "Filippi4\\Wildberries\\Facades\\WildberriesSuppliesServiceProvider",
+        "WildberriesContentPrices": "Filippi4\\Wildberries\\Facades\\WildberriesContentServiceProvider"
       }
     }
   }
