@@ -760,6 +760,17 @@ class Wildberries extends WildberriesClient
     }
 
     /**
+     * @param array $orders
+     * @return mixed
+     */
+    public function getAssemblyTasksStatuses(
+        array $orders,
+    ): mixed {
+        $params = compact('orders');
+        return (new WildberriesData($this->postResponse('api/v3/orders/status', $params, false)))->data;
+    }
+
+    /**
      * @return mixed
      */
     public function getListOfNewAssemblyTasks(): mixed
