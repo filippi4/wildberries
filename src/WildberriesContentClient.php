@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 
 class WildberriesContentClient
 {
-    private const URL = 'https://marketplace-api.wildberries.ru/';
+    private const URL = 'https://content-api.wildberries.ru/';
 
     private const DEFAULT_HEADER = [
         'Accept' => 'application/json',
