@@ -152,11 +152,17 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     public function getSalesReportsByRegion(
         Carbon $dateFrom = null,
         Carbon $dateTo = null
-    )
-    {
+    ) {
         $dateFrom = $dateFrom->toDateString();
         $dateTo = $dateTo->toDateString();
         $params = compact('dateFrom', 'dateTo');
         return (new WildberriesData($this->getResponse('api/v1/analytics/region-sale', $params)))->data;
+    }
+
+    public function getWbAntiFraudDetails(string $date): mixed
+    {
+        $props = compact('date');
+
+        return (new WildberriesData($this->getResponse('api/v1/analytics/antifraud-details', $props)))->data;
     }
 }
