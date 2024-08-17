@@ -159,10 +159,9 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return (new WildberriesData($this->getResponse('api/v1/analytics/region-sale', $params)))->data;
     }
 
-    public function getWbAntiFraudDetails(string $date): mixed
+    public function getWbAntiFraudDetails(): mixed
     {
-        $props = compact('date');
 
-        return (new WildberriesData($this->getResponse('api/v1/analytics/antifraud-details', $props)))->data;
+        return (new WildberriesData($this->getResponse('api/v1/analytics/antifraud-details')))->data;
     }
 }
