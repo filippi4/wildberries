@@ -694,16 +694,7 @@ class Wildberries extends WildberriesClient
     }
 
 
-    /**
-     * @param int $fromID 
-     * @return mixed
-     */
-    public function getNews(
-        string $fromID = null
-    ): mixed {
-        $params = compact('fromID');
-        return (new WildberriesData($this->getResponse('api/communications/v1/news', $params, false)))->data;
-    }
+
 
     /**
      * @param int $limit
