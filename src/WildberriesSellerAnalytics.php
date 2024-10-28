@@ -131,6 +131,56 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     }
 
     /**
+     *
+     * @param string $startPeriod
+     * @param string $endPeriod
+     * @param int $nmId
+     * @return mixed
+     */
+    public function getWbProductSearchTexts($nmId, $startPeriod, $endPeriod): mixed
+    {
+
+        $props = [
+            'nmId' => $nmId,
+            'currentPeriod' => [
+                'start' => $startPeriod,
+                'end' => $endPeriod
+            ],
+            'topOrderBy' => 'openToCart',
+            "orderBy" => [
+                "field" => "avgPosition",
+                "mode" => "asc"
+            ],
+            "limit" => 30
+        ];
+
+        return (new WildberriesData($this->postResponse('api/v2/search-report/product/search-texts', $props)))->data;
+    }
+
+    /**
+     *
+     * @param string $startPeriod
+     * @param string $endPeriod
+     * @param int $nmId
+     * @param array $searchTexts
+     * @return mixed
+     */
+    public function getSearchProductOrders($nmId, $startPeriod, $endPeriod, $searchTexts): mixed
+    {
+
+        $props = [
+            'nmId' => $nmId,
+            'period' => [
+                'start' => $startPeriod,
+                'end' => $endPeriod
+            ],
+            "searchTexts" => $searchTexts
+        ];
+
+        return (new WildberriesData($this->postResponse('api/v2/search-report/product/orders', $props)))->data;
+    }
+
+    /**
      * Retrieves the Djem report for the given ID.
      *
      * @param string $id The ID of the Djem report.
@@ -164,4 +214,19 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
 
         return (new WildberriesData($this->getResponse('api/v1/analytics/antifraud-details')))->data;
     }
+
+    /**
+     * Retrieves the detailed report for the goods returns.
+     *
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return mixed
+     */
+    public function getGoodsReturn($dateFrom, $dateTo): mixed
+    {
+        $props = compact('dateFrom', 'dateTo');
+
+        return (new WildberriesData($this->getResponse('api/v1/analytics/goods-return', $props)))->data;
+    }
+
 }
