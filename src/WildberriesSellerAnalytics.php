@@ -135,14 +135,14 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
      * @param string $startPeriod
      * @param string $endPeriod
      * @param string $topOrderBy
-     * @param int $nmId
+     * @param array $nmIds
      * @return mixed
      */
-    public function getWbProductSearchTexts($nmId, $startPeriod, $endPeriod, $topOrderBy): mixed
+    public function getWbProductSearchTexts($nmIds, $startPeriod, $endPeriod, $topOrderBy): mixed
     {
 
         $props = [
-            'nmId' => $nmId,
+            'nmIds' => $nmIds,
             'currentPeriod' => [
                 'start' => $startPeriod,
                 'end' => $endPeriod
