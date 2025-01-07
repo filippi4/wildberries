@@ -70,7 +70,8 @@ class WildberriesAdvert extends WildberriesAdvertClient
     /**
      * Получение списка предметов продавца
      */
-    public function getSuplierSubject(): mixed {
+    public function getSuplierSubject(): mixed
+    {
         return (
             new WildberriesData(
                 $this->getResponse(
@@ -83,7 +84,8 @@ class WildberriesAdvert extends WildberriesAdvertClient
     /**
      * Получение списка Артикулов WB (nmId) продавца по ID предмета
      */
-    public function getSuplierNm(int $subject): mixed {
+    public function getSuplierNm(int $subject): mixed
+    {
         return (
             new WildberriesData(
                 $this->getResponse(
@@ -194,6 +196,19 @@ class WildberriesAdvert extends WildberriesAdvertClient
     public function getStatWords(int $id): mixed
     {
         return (new WildberriesData($this->getResponse('adv/v1/stat/words', compact('id'))))->data;
+    }
+
+    /**
+     * Метод позволяет получать статистику поисковой кампании по ключевым фразам для Автоматических кампаний и Аукциона
+     *
+     * @param int $advert_id
+     * @param string $from
+     * @param string $to
+     * @return mixed
+     */
+    public function getStatKeywords(int $advert_id, string $from, string $to): mixed
+    {
+        return (new WildberriesData($this->getResponse('adv/v0/stats/keywords', compact('advert_id', 'from', 'to'))))->data;
     }
 
     /**
