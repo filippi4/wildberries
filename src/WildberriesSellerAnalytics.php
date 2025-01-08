@@ -230,4 +230,57 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return (new WildberriesData($this->getResponse('api/v1/analytics/goods-return', $props)))->data;
     }
 
+    /**
+     * Retrieves the detailed report for the turnover dynamics.
+     *
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return mixed
+     */
+    public function getTurnoverDynamics($dateFrom, $dateTo): mixed
+    {
+        $props = compact('dateFrom', 'dateTo');
+
+        return (new WildberriesData($this->getResponse('api/v1/turnover-dynamics/daily-dynamics', $props)))->data;
+    }
+
+    /**
+     * Retrieves SellerBrands .
+     *
+     * @return mixed
+     */
+    public function getSellerBrands(): mixed
+    {
+        return (new WildberriesData($this->getResponse('api/v1/analytics/brand-share/brands')))->data;
+    }
+
+    /**
+     * Retrieves SellerBrands .
+     * @param string $brand
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return mixed
+     */
+    public function getBrandParentSubjects($brand, $dateFrom, $dateTo): mixed
+    {
+        $props = compact('brand', 'dateFrom', 'dateTo');
+
+        return (new WildberriesData($this->getResponse('api/v1/analytics/brand-share/parent-subjects', $props)))->data;
+    }
+
+    /**
+     * Retrieves BrandShare .
+     * @param int $parentId
+     * @param string $brand
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return mixed
+     */
+    public function getBrandShare(int $parentId, string $brand, $dateFrom, $dateTo): mixed
+    {
+        $props = compact('parentId', 'brand', 'dateFrom', 'dateTo');
+
+        return (new WildberriesData($this->getResponse('api/v1/analytics/brand-share', $props)))->data;
+    }
+
 }
