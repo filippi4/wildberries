@@ -255,6 +255,28 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     }
 
     /**
+     * Retrieves ShadowedProducts .
+     *
+     * @return mixed
+     */
+    public function getShadowedProducts(string $sort, string $order): mixed
+    {
+        $params = compact('sort', 'order');
+        return (new WildberriesData($this->getResponse('api/v1/analytics/banned-products/shadowed', $params)))->data;
+    }
+
+    /**
+     * Retrieves BlockedProducts .
+     *
+     * @return mixed
+     */
+    public function getBlockedProducts(string $sort, string $order): mixed
+    {
+        $params = compact('sort', 'order');
+        return (new WildberriesData($this->getResponse('api/v1/analytics/banned-products/blocked', $params)))->data;
+    }
+
+    /**
      * Retrieves SellerBrands .
      * @param string $brand
      * @param string $dateFrom
