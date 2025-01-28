@@ -714,6 +714,23 @@ class Wildberries extends WildberriesClient
     }
 
     /**
+     * @param int $limit
+     * @param int $next
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return mixed
+     */
+    public function getAssemblyTasksDbs(
+        int $limit,
+        int $next,
+        string $dateFrom,
+        string $dateTo
+    ): mixed {
+        $params = compact('limit', 'next', 'dateFrom', 'dateTo');
+        return (new WildberriesData($this->getResponse('api/v3/dbs/orders', $params, false)))->data;
+    }
+
+    /**
      * @param array $orders
      * @return mixed
      */
