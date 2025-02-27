@@ -31,7 +31,7 @@ class WildberriesDocumentsClient
     protected function validateKeys(array $keys): void
     {
         $validator = Validator::make($keys, [
-            'token_documents' => 'required|string',
+            'token_api' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -56,7 +56,7 @@ class WildberriesDocumentsClient
     {
         $fullPath = self::DOCUMENTS_URL . ltrim($uri, '/');
         $options = self::DEFAULT_OPTIONS;
-        $options['headers']['Authorization'] = $this->config['token_documents'] ?? '';
+        $options['headers']['Authorization'] = $this->config['token_api'];
 
         if (!empty($params)) {
             $fullPath .= '?' . http_build_query($params);
@@ -72,7 +72,7 @@ class WildberriesDocumentsClient
     {
         $fullPath = self::DOCUMENTS_URL . ltrim($uri, '/');
         $options = self::DEFAULT_OPTIONS;
-        $options['headers']['Authorization'] = $this->config['token_documents'] ?? '';
+        $options['headers']['Authorization'] = $this->config['token_api'];
 
         if (!empty($params)) {
             $options['json'] = $params;
