@@ -11,7 +11,7 @@ class WildberriesDocuments extends WildberriesDocumentsClient
      * @param string|null $dateTo Дата окончания
      * @return mixed
      */
-    public function getDocumentsList(?string $dateFrom = null, ?string $dateTo = null): mixed
+    public function getDocumentsList(?string $dateFrom = null, ?string $dateTo = null, ?string $category = null): mixed
     {
         $params = [];
         if ($dateFrom !== null) {
@@ -20,7 +20,9 @@ class WildberriesDocuments extends WildberriesDocumentsClient
         if ($dateTo !== null) {
             $params['dateTo'] = $dateTo;
         }
-
+        if($category !== null) {
+            $params['category'] = $category;
+        }
         $response = $this->getRequest('api/v1/documents/list', $params);
         return $response->json();
     }
