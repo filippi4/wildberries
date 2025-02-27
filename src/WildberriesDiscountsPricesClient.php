@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 
 class WildberriesDiscountsPricesClient
 {
-    private const URL = 'https://discounts-prices-api.wb.ru/';
+    private const URL = 'https://discounts-prices-api.wildberries.ru/';
 
     private const DEFAULT_HEADER = [
         'Accept' => 'application/json',

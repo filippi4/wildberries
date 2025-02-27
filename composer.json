@@ -13,7 +13,8 @@
     "php": "^8.1",
     "guzzlehttp/guzzle": "^7.2",
     "laravel/framework": "^10.7.1",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-curl": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0",
@@ -35,7 +36,8 @@
         "Filippi4\\Wildberries\\WildberriesSellerAnalyticsServiceProvider",
         "Filippi4\\Wildberries\\WildberriesDiscountsPricesServiceProvider",
         "Filippi4\\Wildberries\\WildberriesSuppliesServiceProvider",
-        "Filippi4\\Wildberries\\WildberriesContentServiceProvider"
+        "Filippi4\\Wildberries\\WildberriesContentServiceProvider",
+        "Filippi4\\Wildberries\\WildberriesDocumentsServiceProvider"
       ],
       "aliases": {
         "Wildberries": "Filippi4\\Wildberries\\Facades\\Wildberries",
@@ -46,7 +48,8 @@
         "WildberriesSellerAnalytics": "Filippi4\\Wildberries\\Facades\\WildberriesSellerAnalyticsServiceProvider",
         "WildberriesDiscountsPrices": "Filippi4\\Wildberries\\Facades\\WildberriesDiscountsPricesServiceProvider",
         "WildberriesSuppliesPrices": "Filippi4\\Wildberries\\Facades\\WildberriesSuppliesServiceProvider",
-        "WildberriesContentPrices": "Filippi4\\Wildberries\\Facades\\WildberriesContentServiceProvider"
+        "WildberriesContentPrices": "Filippi4\\Wildberries\\Facades\\WildberriesContentServiceProvider",
+        "WildberriesDocuments": "Filippi4\\Wildberries\\Facades\\WildberriesDocuments"
       }
     }
   }

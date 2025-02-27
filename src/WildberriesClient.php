@@ -12,6 +12,7 @@ class WildberriesClient
     private const STATISTICS_URL = 'https://statistics-api.wildberries.ru/';
     private const NON_STATISTICS_URL = 'https://marketplace-api.wildberries.ru/';
 
+
     private const DEFAULT_HEADER = [
         'Accept' => 'application/json',
         'Content-Type' => 'application/json',
@@ -129,5 +130,6 @@ class WildberriesClient
         }
         return $response->json();
     }
+
 
 }

@@ -7,7 +7,7 @@ use Illuminate\Validation\ValidationException;
 
 class WildberriesFeedbacksClient
 {
-    private const ADVERT_URL = 'https://feedbacks-api.wb.ru/';
+    private const ADVERT_URL = 'https://feedbacks-api.wildberries.ru/';
 
     private const DEFAULT_HEADER = [
         'Accept' => 'application/json',

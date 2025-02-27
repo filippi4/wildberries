@@ -7,7 +7,7 @@ use Illuminate\Validation\ValidationException;
 
 class WildberriesAdvertMediaClient
 {
-    private const ADVERT_URL = 'https://advert-media-api.wb.ru/';
+    private const ADVERT_URL = 'https://advert-media-api.wildberries.ru/';
 
     private const DEFAULT_HEADER = [
         'Accept' => 'application/json',

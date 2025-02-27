@@ -9,7 +9,7 @@ use Exception;
 
 class WildberriesAdvertClient
 {
-    private const ADVERT_URL = 'https://advert-api.wb.ru/';
+    private const ADVERT_URL = 'https://advert-api.wildberries.ru/';
 
     private const DEFAULT_HEADER = [
         'Accept' => 'application/json',
