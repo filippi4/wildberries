@@ -11,6 +11,8 @@ class WildberriesClient
 {
     private const STATISTICS_URL = 'https://statistics-api.wildberries.ru/';
     private const NON_STATISTICS_URL = 'https://marketplace-api.wildberries.ru/';
+    private const DOCUMENTS_URL = 'https://documents-api.wildberries.ru/';
+
 
     private const DEFAULT_HEADER = [
         'Accept' => 'application/json',
@@ -130,4 +132,14 @@ class WildberriesClient
         return $response->json();
     }
 
+    protected function getDocumentsResponse(string $uri = null, array $params = []): WildberriesResponse
+    {
+        $full_path = self::DOCUMENTS_URL . $uri;
+        $options = self::DEFAULT_OPTIONS;
+        $options['headers']['Authorization'] = $this->config['token_api'];
+        if (count($params)) {
+            $full_path .= '?' . http_build_query($params);
+        }
+        return WildberriesRequest::makeRequest($full_path, $options, 'get');
+    }
 }

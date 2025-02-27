@@ -749,4 +749,16 @@ class Wildberries extends WildberriesClient
         return (new WildberriesData($this->getResponse('api/v3/orders/new')))->data;
     }
 
+    public function getDocumentsList(array $params = []): mixed
+    {
+        return (new WildberriesData(
+            $this->getDocumentsResponse('api/v1/documents/list', $params)
+        ))->data;
+    }
+    public function downloadDocument(array $params = []): mixed
+    {
+        return (new WildberriesData(
+            $this->getDocumentsResponse('api/v1/documents/download', $params)
+        ))->data;
+    }
 }
