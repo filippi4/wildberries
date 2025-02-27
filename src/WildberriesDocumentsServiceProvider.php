@@ -1,9 +1,8 @@
 <?php
 
-namespace Filippi4\Wildberries\Providers;
+namespace Filippi4\Wildberries;
 
 use Illuminate\Support\ServiceProvider;
-use Filippi4\Wildberries\WildberriesDocumentsClient;
 
 class WildberriesDocumentsServiceProvider extends ServiceProvider
 {
