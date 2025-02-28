@@ -4,6 +4,14 @@ namespace Filippi4\Wildberries;
 
 class WildberriesDocuments extends WildberriesDocumentsClient
 {
+    public function config(array $keys): WildberriesDocuments
+    {
+        $this->validateKeys($keys);
+
+        $this->config = $keys;
+
+        return $this;
+    }
     /**
      * Получение списка документов.
      *
@@ -42,6 +50,7 @@ class WildberriesDocuments extends WildberriesDocumentsClient
         ];
 
         $response = $this->getRequest('api/v1/documents/download', $params);
-        return $response->json();
+        $response = json_decode($response->json(), true);
+        return $response;
     }
 }
