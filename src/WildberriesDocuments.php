@@ -23,10 +23,10 @@ class WildberriesDocuments extends WildberriesDocumentsClient
     {
         $params = [];
         if ($dateFrom !== null) {
-            $params['dateFrom'] = $dateFrom;
+            $params['beginTime'] = $dateFrom;
         }
         if ($dateTo !== null) {
-            $params['dateTo'] = $dateTo;
+            $params['endTime'] = $dateTo;
         }
         if($category !== null) {
             $params['category'] = $category;
