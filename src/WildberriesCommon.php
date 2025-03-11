@@ -95,6 +95,6 @@ class WildberriesCommon extends WildberriesCommonClient
         string $fromID = null
     ): mixed {
         $params = compact('fromID');
-        return (new WildberriesData($this->getResponse('api/communications/v1/news', $params, false)))->data;
+        return (new WildberriesData($this->getResponse('api/communications/v2/news', $params)))->data;
     }
 }
