@@ -36,26 +36,30 @@ class WildberriesDPCalendar extends WildberriesDPCalendarClient
     }
 
     /**
-     * @param string $promotionIDs
+     * @param array $promotionIDs
      * @return mixed
      */
     public function getPromotionsDetails(
-        string $promotionIDs,
+        array $promotionIDs,
     ): mixed {
-        $params = compact('promotionIDs');
-        return (new WildberriesData($this->getResponse('api/v1/calendar/promotions/details', $params)))->data;
+        $params = array_map(function ($id) {
+            return 'promotionIDs=' . urlencode($id);
+        }, $promotionIDs);
+        $query_string = implode('&', $params);
+
+        return (new WildberriesData($this->getResponse('api/v1/calendar/promotions/details?' . $query_string)))->data;
     }
 
     /**
      * @param int $promotionID
-     * @param bool $inAction
+     * @param string $inAction
      * @param int $limit
      * @param int $offset
      * @return mixed
      */
     public function getPromotionsNomenclatures(
         string $promotionID,
-        bool $inAction,
+        string $inAction,
         int $limit,
         int $offset = 0
     ): mixed {
