@@ -4,6 +4,7 @@ namespace Filippi4\Wildberries;
 
 
 use Carbon\Carbon;
+use Exception;
 
 class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
 {
@@ -37,17 +38,27 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return (new WildberriesData($this->getResponse('api/v1/analytics/incorrect-attachments', $params)))->data;
     }
 
-
-    public function getAcceptanceReports(
+    public function createAcceptanceReport(
         Carbon $dateFrom = null,
-        Carbon $dateTo = null,
+        Carbon $dateTo = null
     ): mixed {
         $dateFrom = $dateFrom->toDateString();
         $dateTo = $dateTo->toDateString();
         $params = compact('dateFrom', 'dateTo');
-        return (new WildberriesData($this->getResponse('api/v1/analytics/acceptance-report', $params)))->data;
+        return (new WildberriesData($this->getResponse('api/v1/acceptance_report', $params)))->data;
     }
 
+    public function getAcceptanceReportStatus(
+        string $taskId
+    ): mixed {
+        return (new WildberriesData($this->getResponse("api/v1/acceptance_report/tasks/$taskId/status")))->data;
+    }
+
+    public function getAcceptanceReportData(
+        string $taskId
+    ): mixed {
+        return (new WildberriesData($this->getResponse("api/v1/acceptance_report/tasks/$taskId/download")))->data;
+    }
 
     public function getReportStatus(
         string $id
