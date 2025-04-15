@@ -38,47 +38,26 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return (new WildberriesData($this->getResponse('api/v1/analytics/incorrect-attachments', $params)))->data;
     }
 
-
-    public function getAcceptanceReports(
+    public function createAcceptanceReport(
         Carbon $dateFrom = null,
-        Carbon $dateTo = null,
-        int $maxRetries = 5,
-        int $initialDelay = 30
+        Carbon $dateTo = null
     ): mixed {
         $dateFrom = $dateFrom->toDateString();
         $dateTo = $dateTo->toDateString();
         $params = compact('dateFrom', 'dateTo');
+        return (new WildberriesData($this->getResponse('api/v1/acceptance_report', $params)))->data;
+    }
 
-        $createdReport = new WildberriesData($this->getResponse('api/v1/acceptance_report', $params));
-        $taskId = $createdReport->data->data->taskId;
+    public function getAcceptanceReportStatus(
+        string $taskId
+    ): mixed {
+        return (new WildberriesData($this->getResponse("api/v1/acceptance_report/tasks/$taskId/status")))->data;
+    }
 
-        $status = "";
-        $retryCount = 0;
-        $delay = $initialDelay;
-        while ($retryCount <= $maxRetries) {
-            $statusResponse = new WildberriesData($this->getResponse("api/v1/acceptance_report/tasks/$taskId/status"));
-            $status = $statusResponse->data->data->status ?? null;
-
-            switch ($status) {
-                case 'done':
-                    return (new WildberriesData($this->getResponse("api/v1/acceptance_report/tasks/$taskId/download")));
-                case 'failed':
-                case 'canceled':
-                case 'purged':
-                    throw new Exception("Report generation failed with status: $status");
-                case 'new':
-                case 'processing':
-                    $retryCount++;
-                    if ($retryCount >= $maxRetries) throw new Exception("Max retries ($maxRetries) reached, last status: $status");
-                    dump("Status: $status. Retry $retryCount, delay $delay sec");
-                    sleep($delay);
-                    $delay = min($delay * 2, 300);
-                    break;
-                default:
-                    throw new Exception("Unknown status received: $status");
-            }
-        }
-        return false;
+    public function getAcceptanceReportData(
+        string $taskId
+    ): mixed {
+        return (new WildberriesData($this->getResponse("api/v1/acceptance_report/tasks/$taskId/download")))->data;
     }
 
     public function getReportStatus(
