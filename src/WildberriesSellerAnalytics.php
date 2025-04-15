@@ -4,6 +4,7 @@ namespace Filippi4\Wildberries;
 
 
 use Carbon\Carbon;
+use Exception;
 
 class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
 {
@@ -41,13 +42,44 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     public function getAcceptanceReports(
         Carbon $dateFrom = null,
         Carbon $dateTo = null,
+        int $maxRetries = 5,
+        int $initialDelay = 30
     ): mixed {
         $dateFrom = $dateFrom->toDateString();
         $dateTo = $dateTo->toDateString();
         $params = compact('dateFrom', 'dateTo');
-        return (new WildberriesData($this->getResponse('api/v1/analytics/acceptance-report', $params)))->data;
-    }
 
+        $createdReport = new WildberriesData($this->getResponse('api/v1/acceptance_report', $params));
+        $taskId = $createdReport->data->data->taskId;
+
+        $status = "";
+        $retryCount = 0;
+        $delay = $initialDelay;
+        while ($retryCount <= $maxRetries) {
+            $statusResponse = new WildberriesData($this->getResponse("api/v1/acceptance_report/tasks/$taskId/status"));
+            $status = $statusResponse->data->data->status ?? null;
+
+            switch ($status) {
+                case 'done':
+                    return (new WildberriesData($this->getResponse("api/v1/acceptance_report/tasks/$taskId/download")));
+                case 'failed':
+                case 'canceled':
+                case 'purged':
+                    throw new Exception("Report generation failed with status: $status");
+                case 'new':
+                case 'processing':
+                    $retryCount++;
+                    if ($retryCount >= $maxRetries) throw new Exception("Max retries ($maxRetries) reached, last status: $status");
+                    dump("Status: $status. Retry $retryCount, delay $delay sec");
+                    sleep($delay);
+                    $delay = min($delay * 2, 300);
+                    break;
+                default:
+                    throw new Exception("Unknown status received: $status");
+            }
+        }
+        return false;
+    }
 
     public function getReportStatus(
         string $id
