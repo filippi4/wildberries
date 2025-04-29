@@ -316,4 +316,37 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return (new WildberriesData($this->getResponse('api/v1/analytics/brand-share', $props)))->data;
     }
 
+    /**
+     *
+     * @param string $startPeriod
+     * @param string $endPeriod
+     * @param int $nmId
+     * @param string $orderByField
+     * @param bool $includeOffice
+     * @return mixed
+     */
+    public function getStocksProductsSizesReport(
+        string $startPeriod,
+        string $endPeriod,
+        int    $nmId,
+        string $orderByField = 'saleRate',
+        bool   $includeOffice = true,
+    ): mixed
+    {
+        $props = [
+            'nmID' => $nmId,
+            'currentPeriod' => [
+                'start' => $startPeriod,
+                'end' => $endPeriod
+            ],
+            'stockType' => '',
+            'orderBy' => [
+                'field' => $orderByField,
+                'mode' => 'asc'
+            ],
+            'includeOffice' => $includeOffice
+        ];
+
+        return (new WildberriesData($this->postResponse('api/v2/stocks-report/products/sizes', $props)))->data;
+    }
 }
