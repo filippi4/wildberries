@@ -1,10 +1,7 @@
 <?php
-
 namespace Filippi4\Wildberries;
 
-
 use Carbon\Carbon;
-use Exception;
 
 class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
 {
@@ -23,8 +20,8 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         string $type = 'paid_storage'
     ): mixed {
         $dateFrom = $dateFrom->toDateString();
-        $dateTo = $dateTo->toDateString();
-        $params = compact('dateFrom', 'dateTo');
+        $dateTo   = $dateTo->toDateString();
+        $params   = compact('dateFrom', 'dateTo');
         return (new WildberriesData($this->getResponse('api/v1/paid_storage', $params)))->data;
     }
 
@@ -33,8 +30,8 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         Carbon $dateTo = null,
     ): mixed {
         $dateFrom = $dateFrom->toDateString();
-        $dateTo = $dateTo->toDateString();
-        $params = compact('dateFrom', 'dateTo');
+        $dateTo   = $dateTo->toDateString();
+        $params   = compact('dateFrom', 'dateTo');
         return (new WildberriesData($this->getResponse('api/v1/analytics/incorrect-attachments', $params)))->data;
     }
 
@@ -43,8 +40,8 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         Carbon $dateTo = null
     ): mixed {
         $dateFrom = $dateFrom->toDateString();
-        $dateTo = $dateTo->toDateString();
-        $params = compact('dateFrom', 'dateTo');
+        $dateTo   = $dateTo->toDateString();
+        $params   = compact('dateFrom', 'dateTo');
         return (new WildberriesData($this->getResponse('api/v1/acceptance_report', $params)))->data;
     }
 
@@ -72,7 +69,6 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     ): mixed {
         return $this->getResponseWithJson('api/v1/paid_storage/tasks/' . $id . '/download', []);
     }
-
 
     public function getContentHistoryNmid(array $nmIDs, $period): mixed
     {
@@ -108,25 +104,24 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     public function createNmDjemReport(string $id, string $reportType, string $startDate, string $endDate): mixed
     {
         $params = [
-            'id' => $id,
-            'reportType' => $reportType,
+            'id'             => $id,
+            'reportType'     => $reportType,
             "userReportName" => "Card report",
-            "params" => [
-                "startDate" => $startDate,
-                "endDate" => $endDate,
-                "nmIDs" => [],
-                "subjectIDs" => [],
-                "brandNames" => [],
-                "tagIDs" => [],
-                "timezone" => "Europe/Moscow",
+            "params"         => [
+                "startDate"        => $startDate,
+                "endDate"          => $endDate,
+                "nmIDs"            => [],
+                "subjectIDs"       => [],
+                "brandNames"       => [],
+                "tagIDs"           => [],
+                "timezone"         => "Europe/Moscow",
                 "aggregationLevel" => "day",
-                "skipDeletedNms" => false
-            ]
+                "skipDeletedNms"   => false,
+            ],
         ];
 
         return $this->postResponseWithJson('api/v2/nm-report/downloads', $params);
     }
-
 
     /**
      * Retrieves the status of the Djem report for the given ID.
@@ -153,17 +148,17 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     {
 
         $props = [
-            'nmIds' => $nmIds,
+            'nmIds'         => $nmIds,
             'currentPeriod' => [
                 'start' => $startPeriod,
-                'end' => $endPeriod
+                'end'   => $endPeriod,
             ],
-            'topOrderBy' => $topOrderBy,
-            "orderBy" => [
+            'topOrderBy'    => $topOrderBy,
+            "orderBy"       => [
                 "field" => "avgPosition",
-                "mode" => "asc"
+                "mode"  => "asc",
             ],
-            "limit" => 30
+            "limit"         => 30,
         ];
 
         return (new WildberriesData($this->postResponse('api/v2/search-report/product/search-texts', $props)))->data;
@@ -181,12 +176,12 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     {
 
         $props = [
-            'nmId' => $nmId,
-            'period' => [
+            'nmId'        => $nmId,
+            'period'      => [
                 'start' => $startPeriod,
-                'end' => $endPeriod
+                'end'   => $endPeriod,
             ],
-            "searchTexts" => $searchTexts
+            "searchTexts" => $searchTexts,
         ];
 
         return (new WildberriesData($this->postResponse('api/v2/search-report/product/orders', $props)))->data;
@@ -203,7 +198,6 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return $this->getFile('api/v2/nm-report/downloads/file/' . $id);
     }
 
-
     public function getStorageCoefficient($date): mixed
     {
         $props = compact('date');
@@ -216,8 +210,8 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         Carbon $dateTo = null
     ) {
         $dateFrom = $dateFrom->toDateString();
-        $dateTo = $dateTo->toDateString();
-        $params = compact('dateFrom', 'dateTo');
+        $dateTo   = $dateTo->toDateString();
+        $params   = compact('dateFrom', 'dateTo');
         return (new WildberriesData($this->getResponse('api/v1/analytics/region-sale', $params)))->data;
     }
 
@@ -328,23 +322,22 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     public function getStocksProductsSizesReport(
         string $startPeriod,
         string $endPeriod,
-        int    $nmId,
+        int $nmId,
         string $orderByField = 'saleRate',
-        bool   $includeOffice = true,
-    ): mixed
-    {
+        bool $includeOffice = false,
+    ): mixed {
         $props = [
-            'nmID' => $nmId,
+            'nmID'          => $nmId,
             'currentPeriod' => [
                 'start' => $startPeriod,
-                'end' => $endPeriod
+                'end'   => $endPeriod,
             ],
-            'stockType' => '',
-            'orderBy' => [
+            'stockType'     => '',
+            'orderBy'       => [
                 'field' => $orderByField,
-                'mode' => 'asc'
+                'mode'  => 'asc',
             ],
-            'includeOffice' => $includeOffice
+            'includeOffice' => $includeOffice,
         ];
 
         return (new WildberriesData($this->postResponse('api/v2/stocks-report/products/sizes', $props)))->data;
