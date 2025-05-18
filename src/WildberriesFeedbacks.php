@@ -1,5 +1,4 @@
 <?php
-
 namespace Filippi4\Wildberries;
 
 class WildberriesFeedbacks extends WildberriesFeedbacksClient
@@ -63,7 +62,7 @@ class WildberriesFeedbacks extends WildberriesFeedbacksClient
      *
      * @return mixed
      */
-    public function getFeedbacks(bool $isAnswered, int $take, int $skip, string $order, int $dateFrom, ?int $nmId = null): mixed
+    public function getFeedbacks(bool $isAnswered, int $take, int $skip, string $order, int $dateFrom = null, ?int $nmId = null): mixed
     {
         return (new WildberriesData($this->getResponse('api/v1/feedbacks', compact('isAnswered', 'take', 'skip', 'order', 'dateFrom', 'nmId'))))->data;
     }
