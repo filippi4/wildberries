@@ -38,7 +38,8 @@
         "Filippi4\\Wildberries\\WildberriesSuppliesServiceProvider",
         "Filippi4\\Wildberries\\WildberriesContentServiceProvider",
         "Filippi4\\Wildberries\\WildberriesDocumentsServiceProvider",
-        "Filippi4\\Wildberries\\WildberriesDPCalendarServiceProvider"
+        "Filippi4\\Wildberries\\WildberriesDPCalendarServiceProvider",
+        "Filippi4\\Wildberries\\WildberriesReturnsServiceProvider"
       ],
       "aliases": {
         "Wildberries": "Filippi4\\Wildberries\\Facades\\Wildberries",
@@ -51,7 +52,8 @@
         "WildberriesSuppliesPrices": "Filippi4\\Wildberries\\Facades\\WildberriesSuppliesServiceProvider",
         "WildberriesContentPrices": "Filippi4\\Wildberries\\Facades\\WildberriesContentServiceProvider",
         "WildberriesDocuments": "Filippi4\\Wildberries\\Facades\\WildberriesDocuments",
-        "WildberriesDPCalendar": "Filippi4\\Wildberries\\Facades\\WildberriesDPCalendar"
+        "WildberriesDPCalendar": "Filippi4\\Wildberries\\Facades\\WildberriesDPCalendar",
+        "WildberriesReturns": "Filippi4\\Wildberries\\Facades\\WildberriesReturns"
       }
     }
   }
