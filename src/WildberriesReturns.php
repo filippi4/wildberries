@@ -26,7 +26,7 @@ class WildberriesReturns extends WildberriesReturnsClient
      * @param ?int $limit Количество заявок в ответе [1..200]. По умолчанию 50
      * @param ?string $direction
      * @param ?int $offset После какого элемента выдавать данные >= 0. По умолчанию 0
-     * @param int $nm_id Артикул WB
+     * @param int|null $nm_id Артикул WB
      * @return mixed
      */
     public function getReturns(
@@ -35,9 +35,10 @@ class WildberriesReturns extends WildberriesReturnsClient
         int|null $limit,
         string|null $direction,
         int|null $offset,
-        int $nm_id
+        int|null $nm_id
     ): mixed
     {
+        $is_archive = $is_archive ? 'true' : 'false';
         return (
             new WildberriesData(
                 $this->getResponse(
