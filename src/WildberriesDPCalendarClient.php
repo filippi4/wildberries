@@ -38,7 +38,6 @@ class WildberriesDPCalendarClient
     {
         $validator = Validator::make($keys, [
             'token_api' => 'required|string',
-            'token_api_stat' => 'required|string',
         ]);
 
         if ($validator->fails()) {
