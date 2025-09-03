@@ -39,7 +39,6 @@ class WildberriesClient
     {
         $validator = Validator::make($keys, [
             'token_api' => 'required|string',
-            'token_api_stat' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -57,10 +56,10 @@ class WildberriesClient
      */
     protected function getResponse(string $uri = null, array $params = [], bool $is_stat = false): WildberriesResponse
     {
-        $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
+        $full_path = self::NON_STATISTICS_URL . $uri;
         $options = self::DEFAULT_OPTIONS;
 
-        $options['headers']['Authorization'] = $is_stat ? $this->config['token_api_stat'] : $this->config['token_api'];
+        $options['headers']['Authorization'] = $this->config['token_api'];
 
         if (count($params)) {
             $full_path .= '?' . http_build_query($params);
@@ -78,10 +77,10 @@ class WildberriesClient
      */
     protected function postResponse(string $uri = null, array $params = [], bool $is_stat = false): WildberriesResponse
     {
-        $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
+        $full_path = self::NON_STATISTICS_URL . $uri;
         $options = self::DEFAULT_OPTIONS;
 
-        $options['headers']['Authorization'] = $is_stat ? $this->config['token_api_stat'] : $this->config['token_api'];
+        $options['headers']['Authorization'] = $this->config['token_api'];
 
         if (count($params)) {
             $options['json'] = $params;
@@ -100,12 +99,12 @@ class WildberriesClient
      */
     protected function getResponseWithJson(string $uri = null, array $params = [], bool $is_stat = false): mixed
     {
-        $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
+        $full_path = self::NON_STATISTICS_URL . $uri;
 
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-            'Authorization' => $is_stat ? $this->config['token_api_stat'] : $this->config['token_api']
+            'Authorization' => $this->config['token_api']
         ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->get($full_path, ['timeout' => 100,]);
 
         if ($response->status() > 399) {
@@ -117,12 +116,12 @@ class WildberriesClient
 
     protected function postResponseWithJson(string $uri = null, array $params = [], bool $is_stat = false): mixed
     {
-        $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
+        $full_path = self::NON_STATISTICS_URL . $uri;
 
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-            'Authorization' => $is_stat ? $this->config['token_api_stat'] : $this->config['token_api']
+            'Authorization' => $this->config['token_api']
         ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->post($full_path);
 
         if ($response->status() > 399) {
