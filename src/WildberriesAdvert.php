@@ -224,15 +224,30 @@ class WildberriesAdvert extends WildberriesAdvertClient
     }
 
     /**
-     * Метод позволяет получать статистку кампании, разделенную по дням, номенклатурам
-     * и платформам (сайт, андроид, IOS)
+     * Метод формирует статистику для кампаний независимо от типа.
+     * Максимальный период в запросе — 31 день.
+     * Для кампаний в статусах 7, 9 и 11.
      *
-     * @param array $advertIds
+     * @param string $beginDate
+     * @param string $endDate
+     * @param array $ids
      * @return mixed
      */
-    public function getFullstats(array $advertIds): mixed
+    public function getFullstats(string $beginDate, string $endDate, array $ids): mixed
     {
-        return $this->postResponseWithJson('adv/v2/fullstats', $advertIds);
+        $idsString = implode(',', $ids);
+
+        return (
+        new WildberriesData(
+            $this->getResponse(
+                'adv/v3/fullstats',
+                array_merge(
+                    compact('beginDate', 'endDate'),
+                    ['ids' => $idsString]
+                )
+            )
+        )
+        )->data;
     }
 
     /**
