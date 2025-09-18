@@ -1,5 +1,4 @@
 <?php
-
 namespace Filippi4\Wildberries;
 
 use Illuminate\Support\Facades\Validator;
@@ -10,13 +9,13 @@ class WildberriesAdvertMediaClient
     private const ADVERT_URL = 'https://advert-media-api.wildberries.ru/';
 
     private const DEFAULT_HEADER = [
-        'Accept' => 'application/json',
+        'Accept'       => 'application/json',
         'Content-Type' => 'application/json',
     ];
 
     private const DEFAULT_OPTIONS = [
-        'headers' => self::DEFAULT_HEADER,
-        'timeout' => 35,
+        'headers'         => self::DEFAULT_HEADER,
+        'timeout'         => 35,
         'connect_timeout' => 35,
     ];
 
@@ -36,7 +35,7 @@ class WildberriesAdvertMediaClient
     protected function validateKeys(array $keys): void
     {
         $validator = Validator::make($keys, [
-            'token_api_adv' => 'required|string',
+            'token_api' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -55,9 +54,9 @@ class WildberriesAdvertMediaClient
     protected function getResponse(string $uri = null, array $params = []): WildberriesResponse
     {
         $full_path = self::ADVERT_URL . $uri;
-        $options = self::DEFAULT_OPTIONS;
+        $options   = self::DEFAULT_OPTIONS;
 
-        $options['headers']['Authorization'] = $this->config['token_api_adv'];
+        $options['headers']['Authorization'] = $this->config['token_api'];
 
         if (count($params)) {
             $full_path .= '?' . http_build_query($params);
@@ -77,11 +76,11 @@ class WildberriesAdvertMediaClient
     {
         $full_path = self::ADVERT_URL . $uri;
 
-        $options['headers']['Authorization'] = $this->config['token_api_adv'];
+        $options['headers']['Authorization'] = $this->config['token_api'];
 
         $ch = curl_init($full_path);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:application/json', 'Authorization:' . $this->config['token_api_adv']]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:application/json', 'Authorization:' . $this->config['token_api']]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([$params], JSON_UNESCAPED_UNICODE));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
