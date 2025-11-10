@@ -70,11 +70,13 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return $this->getResponseWithJson('api/v1/paid_storage/tasks/' . $id . '/download', []);
     }
 
-    public function getContentHistoryNmid(array $nmIDs, $period): mixed
+    public function getContentHistoryNmid(array $nmIds, $selectedPeriod): mixed
     {
-        $props = compact('nmIDs', 'period');
+        $props = compact('nmIds', 'selectedPeriod');
 
-        return (new WildberriesData($this->postResponse('api/v2/nm-report/detail/history', $props)))->data;
+        return (new WildberriesData(
+            $this->postResponse('api/analytics/v3/sales-funnel/products/history', $props)
+        ))->data;
     }
 
     /**
