@@ -79,6 +79,22 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         ))->data;
     }
 
+
+    /**
+     * Проверка подключения
+     *
+     * @return mixed
+     */
+    public function ping(): mixed
+    {
+        return (
+            new WildberriesData(
+                $this->getResponse('ping'),
+            )
+        )->data;
+    }
+
+
     /**
      * Retrieves the detailed report for the specified nmIDs, period, and page.
      *
