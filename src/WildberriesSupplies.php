@@ -57,4 +57,56 @@ class WildberriesSupplies extends WildberriesSuppliesClient
             )
         )->data;
     }
+
+    /**
+     * @param array $dates
+     * @param array $statusIDs
+     * @return mixed
+     */
+    public function getSuppliesList(array $dates = [], array $statusIDs = []): mixed
+    {
+        $params = [];
+
+        if (!empty($dates)) {
+            $params['dates'] = $dates;
+        }
+
+        if (!empty($statusIDs)) {
+            $params['statusIDs'] = $statusIDs;
+        }
+
+        return (
+        new WildberriesData(
+            $this->postResponse(
+                'api/v1/supplies',
+                $params
+            )
+        )
+        )->data;
+    }
+
+    /**
+     * @param int $supplyId
+     * @param int $limit
+     * @param int $offset
+     * @param bool $isPreorderID
+     * @return mixed
+     */
+    public function getSupplyGoods(int $supplyId, int $limit = 100, int $offset = 0, bool $isPreorderID = false): mixed
+    {
+        $params = [
+            'limit' => $limit,
+            'offset' => $offset,
+            'isPreorderID' => $isPreorderID,
+        ];
+
+        return (
+        new WildberriesData(
+            $this->getResponse(
+                "api/v1/supplies/{$supplyId}/goods",
+                $params
+            )
+        )
+        )->data;
+    }
 }
