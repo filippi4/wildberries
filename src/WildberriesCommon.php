@@ -97,4 +97,18 @@ class WildberriesCommon extends WildberriesCommonClient
         $params = compact('fromID');
         return (new WildberriesData($this->getResponse('api/communications/v2/news', $params)))->data;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAcceptanceCoefficients(): mixed
+    {
+        return (
+        new WildberriesData(
+            $this->getResponse(
+                'api/tariffs/v1/acceptance/coefficients'
+            )
+        )
+        )->data;
+    }
 }

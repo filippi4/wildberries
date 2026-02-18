@@ -18,20 +18,6 @@ class WildberriesSupplies extends WildberriesSuppliesClient
 
     /**
      * @return mixed
-     */
-    public function getAcceptanceCoefficients(): mixed
-    {
-        return (
-            new WildberriesData(
-                $this->getResponse(
-                    'api/v1/acceptance/coefficients'
-                )
-            )
-        )->data;
-    }
-
-    /**
-     * @return mixed
      * @param int $quantity
      * @param string $barcode
      */
