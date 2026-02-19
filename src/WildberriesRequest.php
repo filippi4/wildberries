@@ -67,9 +67,14 @@ class WildberriesRequest
     {
         try {
             return self::getInstance()->getHttpClient()->get($url, $options);
-        }
-        catch (Throwable $exception) {
-            throw new WildberriesHttpException($exception);
+        } catch (\GuzzleHttp\Exception\ClientException $exception) {
+            $response = $exception->getResponse();
+            $body     = $response ? (string) $response->getBody() : null;
+            throw new WildberriesHttpException(
+                $exception->getMessage() . PHP_EOL . 'Full response: ' . $body,
+                $exception->getCode(),
+                $exception
+            );
         }
     }
 
@@ -85,8 +90,14 @@ class WildberriesRequest
     {
         try {
             return self::getInstance()->getHttpClient()->post($url, $options);
-        } catch (Throwable $exception) {
-            throw new WildberriesHttpException($exception);
+        } catch (\GuzzleHttp\Exception\ClientException $exception) {
+            $response = $exception->getResponse();
+            $body     = $response ? (string) $response->getBody() : null;
+            throw new WildberriesHttpException(
+                $exception->getMessage() . PHP_EOL . 'Full response: ' . $body,
+                $exception->getCode(),
+                $exception
+            );
         }
     }
 
