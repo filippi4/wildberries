@@ -80,6 +80,49 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         ))->data;
     }
 
+    /**
+     * Статистика карточек товаров за период (воронка продаж).
+     * POST /api/analytics/v3/sales-funnel/products
+     *
+     * @param array $selectedPeriod
+     * @param array $pastPeriod
+     * @param array $nmIds
+     * @param array $brandNames
+     * @param array $subjectIds
+     * @param array $tagIds
+     * @param bool  $skipDeletedNm
+     * @param array $orderBy
+     * @param int   $limit
+     * @param int   $offset
+     * @return mixed объект с полями products, currency
+     */
+    public function getSalesFunnelProducts(
+        array $selectedPeriod,
+        array $pastPeriod,
+        array $nmIds = [],
+        array $brandNames = [],
+        array $subjectIds = [],
+        array $tagIds = [],
+        bool $skipDeletedNm = false,
+        array $orderBy = ['field' => 'openCard', 'mode' => 'asc'],
+        int $limit = 1000,
+        int $offset = 0
+    ): mixed {
+        $props = [
+            'selectedPeriod' => $selectedPeriod,
+            'pastPeriod'     => $pastPeriod,
+            'nmIds'          => $nmIds,
+            'brandNames'     => $brandNames,
+            'subjectIds'     => $subjectIds,
+            'tagIds'         => $tagIds,
+            'skipDeletedNm'  => $skipDeletedNm,
+            'orderBy'        => $orderBy,
+            'limit'          => $limit,
+            'offset'         => $offset,
+        ];
+
+        return (new WildberriesData($this->postResponse('api/analytics/v3/sales-funnel/products', $props)))->data;
+    }
 
     /**
      * Проверка подключения
