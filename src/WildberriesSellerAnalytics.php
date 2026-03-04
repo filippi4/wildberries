@@ -409,6 +409,32 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     }
 
     /**
+     * @param string $startDate
+     * @param string $endDate
+     * @param int    $limit
+     * @param int    $offset
+     * @return mixed
+     */
+    public function getStocksReportProducts(
+        string $startDate,
+        string $endDate,
+        int $limit = 1000,
+        int $offset = 0
+    ): mixed {
+        $props = [
+            'currentPeriod'        => ['start' => $startDate, 'end' => $endDate],
+            'stockType'            => '',
+            'skipDeletedNm'        => true,
+            'orderBy'              => ['field' => 'avgOrders', 'mode' => 'asc'],
+            'availabilityFilters'  => ['deficient', 'actual', 'balanced', 'nonActual', 'nonLiquid', 'invalidData'],
+            'limit'                => $limit,
+            'offset'               => $offset,
+        ];
+
+        return (new WildberriesData($this->postResponse('api/v2/stocks-report/products/products', $props)))->data;
+    }
+
+    /**
      *
      * @param array $nmIds,
      * @param array $currentPeriod,
