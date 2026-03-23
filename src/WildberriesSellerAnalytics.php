@@ -301,6 +301,25 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
     }
 
     /**
+     * Retrieves warehouse measurements report.
+     *
+     * @param string|null $dateFrom
+     * @param string $dateTo
+     * @param int $limit
+     * @param int $offset
+     * @return mixed
+     */
+    public function getWarehouseMeasurements(?string $dateFrom, string $dateTo, int $limit = 1000, int $offset = 0): mixed
+    {
+        $props = array_filter(
+            compact('dateFrom', 'dateTo', 'limit', 'offset'),
+            static fn($value) => $value !== null
+        );
+
+        return (new WildberriesData($this->getResponse('api/analytics/v1/warehouse-measurements', $props)))->data;
+    }
+
+    /**
      * Retrieves the detailed report for the turnover dynamics.
      *
      * @param string $dateFrom
