@@ -73,6 +73,27 @@ class WildberriesSupplies extends WildberriesSuppliesClient
 
     /**
      * @param int $supplyId
+     * @param bool $isPreorderID
+     * @return mixed
+     */
+    public function getSupply(int $supplyId, bool $isPreorderID = false): mixed
+    {
+        $params = [
+            'isPreorderID' => $isPreorderID,
+        ];
+
+        return (
+        new WildberriesData(
+            $this->getResponse(
+                "api/v1/supplies/{$supplyId}",
+                $params
+            )
+        )
+        )->data;
+    }
+
+    /**
+     * @param int $supplyId
      * @param int $limit
      * @param int $offset
      * @param bool $isPreorderID
