@@ -348,4 +348,20 @@ class WildberriesAdvert extends WildberriesAdvertClient
             )
         )->data;
     }
+
+    /**
+     *  Метод позволяет получать статистику поисковых кластеров
+     *
+     * @param string $from
+     * @param string $to
+     * @param array $items
+     * @return mixed
+     */
+    public function getNormQueryStats(string $from, string $to, array $items): mixed
+    {
+        return $this->postResponseWithJson(
+            'adv/v0/normquery/stats',
+            compact('from', 'to', 'items')
+        );
+    }
 }
