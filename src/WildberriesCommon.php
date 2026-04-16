@@ -73,15 +73,26 @@ class WildberriesCommon extends WildberriesCommonClient
      * Получение комиссии по категориям товаров.
      *
      * @param string $locale
+     * @param string|null $dateFrom
+     * @param string|null $dateTo
      * @return mixed
      */
-    public function getTariffsCommissions(string $locale = 'ru'): mixed
+    public function getTariffsCommissions(string $locale = 'ru', string $dateFrom = null, string $dateTo = null): mixed
     {
+        $params = compact('locale');
+
+        if ($dateFrom !== null) {
+            $params['dateFrom'] = $dateFrom;
+        }
+        if ($dateTo !== null) {
+            $params['dateTo'] = $dateTo;
+        }
+
         return (
             new WildberriesData(
                 $this->getResponse(
                     'api/v1/tariffs/commission',
-                    compact('locale')
+                    $params
                 )
             )
         )->data;
