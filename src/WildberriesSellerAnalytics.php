@@ -467,6 +467,30 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
  *
      * @return mixed
      */
+    /**
+     *
+     * @param array $nmIds
+     * @param array $chrtIds
+     * @param int   $limit
+     * @param int   $offset
+     * @return mixed
+     */
+    public function getStocksReportWbWarehouses(
+        array $nmIds = [],
+        array $chrtIds = [],
+        int $limit = 250000,
+        int $offset = 0
+    ): mixed {
+        $props = [
+            'nmIds'   => $nmIds,
+            'chrtIds' => $chrtIds,
+            'limit'   => $limit,
+            'offset'  => $offset,
+        ];
+
+        return (new WildberriesData($this->postResponse('api/analytics/v1/stocks-report/wb-warehouses', $props)))->data;
+    }
+
     public function getWbSearchReport(
         array $nmIds,
         array $currentPeriod,
