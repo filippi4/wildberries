@@ -660,6 +660,42 @@ class Wildberries extends WildberriesClient
         )->data;
     }
 
+    /**
+     * Детализации к отчётам реализации за период (Finance API v1).
+     * POST /api/finance/v1/sales-reports/detailed
+     * Данные доступны с 29 января 2024 года.
+     *
+     * @param DateTime $dateFrom
+     * @param DateTime $dateTo
+     * @param int      $limit
+     * @param int      $rrdId
+     * @param string   $period   'weekly' или 'daily'
+     * @param array    $fields
+     * @return array|null
+     */
+    public function getSalesReportsDetailed(
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        int      $limit  = 100000,
+        int      $rrdId  = 0,
+        string   $period = 'weekly',
+        array    $fields = [],
+    ): ?array {
+        $payload = [
+            'dateFrom' => $dateFrom->format('Y-m-d\TH:i:s'),
+            'dateTo'   => $dateTo->format('Y-m-d\TH:i:s'),
+            'limit'    => $limit,
+            'rrdId'    => $rrdId,
+            'period'   => $period,
+        ];
+
+        if (!empty($fields)) {
+            $payload['fields'] = $fields;
+        }
+
+        return $this->financePostResponseWithJson('api/finance/v1/sales-reports/detailed', $payload);
+    }
+
     /** MBA-26 ~5m
      * Отчет по КиЗам.
      * КИЗ — это контрольный идентификационный знак. Он представляет собой маркировку, похожую на QR-код, который проставляется на некоторых товарах. Его можно отсканировать с помощью специального приложения и убедиться в качестве и оригинальности товара.
