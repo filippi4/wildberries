@@ -10,6 +10,7 @@ class WildberriesClient
 {
     private const STATISTICS_URL     = 'https://statistics-api.wildberries.ru/';
     private const NON_STATISTICS_URL = 'https://marketplace-api.wildberries.ru/';
+    private const FINANCE_URL        = 'https://finance-api.wildberries.ru/';
 
     private const DEFAULT_HEADER = [
         'Accept'       => 'application/json',
@@ -117,6 +118,22 @@ class WildberriesClient
     protected function postResponseWithJson(string $uri = null, array $params = [], bool $is_stat = false): mixed
     {
         $full_path = ($is_stat ? self::STATISTICS_URL : self::NON_STATISTICS_URL) . $uri;
+
+        $response = Http::withHeaders([
+            'Accept'        => 'application/json',
+            'Content-Type'  => 'application/json',
+            'Authorization' => $this->config['token_api'],
+        ])->withBody(json_encode($params, JSON_UNESCAPED_UNICODE))->post($full_path);
+
+        if ($response->status() > 399) {
+            throw new Exception('Response status: ' . $response->status() . ' | Message: ' . json_encode($response->json(), JSON_UNESCAPED_UNICODE) . $response->body());
+        }
+        return $response->json();
+    }
+
+    protected function financePostResponseWithJson(string $uri, array $params = []): mixed
+    {
+        $full_path = self::FINANCE_URL . $uri;
 
         $response = Http::withHeaders([
             'Accept'        => 'application/json',
