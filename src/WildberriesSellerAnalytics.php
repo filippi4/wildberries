@@ -263,6 +263,24 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return $this->getFile('api/v2/nm-report/downloads/file/' . $id);
     }
 
+    public function getItemRating(
+        array $currentPeriod,
+        array $pastPeriod,
+        int $limit = 1000,
+        int $offset = 0,
+    ): mixed {
+        $props = [
+            'currentPeriod'              => $currentPeriod,
+            'pastPeriod'                 => $pastPeriod,
+            'isNotIncludeNMsWithoutSales' => false,
+            'orderBy'                    => ['field' => 'feedbackCount', 'mode' => 'desc'],
+            'limit'                      => $limit,
+            'offset'                     => $offset,
+        ];
+
+        return (new WildberriesData($this->postResponse('api/analytics/v1/item-rating', $props)))->data;
+    }
+
     public function getStorageCoefficient($date): mixed
     {
         $props = compact('date');
