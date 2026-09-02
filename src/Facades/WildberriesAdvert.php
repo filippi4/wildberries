@@ -4,8 +4,7 @@ namespace Filippi4\Wildberries\Facades;
 
 /**
  * Custom config
- * @method static WildberriesAdvert \Filippi4\Wildberries\WildberriesAdvert config($keys)
- * ...
+ * @method static \Filippi4\Wildberries\WildberriesAdvert config(array $keys)
  **/
 
 class WildberriesAdvert extends \Illuminate\Support\Facades\Facade

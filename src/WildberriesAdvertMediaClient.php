@@ -48,7 +48,6 @@ class WildberriesAdvertMediaClient
      *
      * @param string|null $uri
      * @param array $params
-     * @param bool $is_stat
      * @return WildberriesResponse
      */
     protected function getResponse(string $uri = null, array $params = []): WildberriesResponse

@@ -7,7 +7,7 @@ use DateTime;
 
 /**
  * Custom config
- * @method static Wildberries \Filippi4\Wildberries\Wildberries config($keys)
+ * @method static \Filippi4\Wildberries\Wildberries config(array $keys)
  * Цены
  * @method static array getInfo(int $quantity = 0)
  * Контент / Просмотр
@@ -36,7 +36,7 @@ use DateTime;
  * Статистика
  * @method static array getSupplierIncomes(DateTime $dateFrom, bool $is_UTC = false)
  * @method static array getSupplierStocks(DateTime $dateFrom, bool $is_UTC = false)
- * @method static array getSupplierOrders(DateTime $dateFrom, bool $is_UTC = false) *
+ * @method static array getSupplierOrders(DateTime $dateFrom, bool $is_UTC = false)
  * @method static array getSupplierSales(DateTime $dateFrom, int $flag = 0, bool $is_UTC = false)
  * @method static array getSupplierReportDetailByPeriod(DateTime $dateFrom, DateTime $dateTo, int $limit = 0, int $rrdid = 0, bool $is_UTC = false)
  * @method static array getSupplierExciseGoods(DateTime $dateFrom, bool $is_UTC = false)

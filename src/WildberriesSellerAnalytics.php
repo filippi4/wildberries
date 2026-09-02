@@ -473,20 +473,6 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
 
     /**
      *
-     * @param array $nmIds,
-     * @param array $currentPeriod,
-     * @param string $orderByField,
-     * @param ?array $pastPeriod = null
-     * @param int $limit = 100,
-     * @param int $offset = 0,
-     * @param bool $includeSubstitutedSKUs,
-     * @param bool $includeSearchTexts,
-     * @param string $positionCluster,
- *
-     * @return mixed
-     */
-    /**
-     *
      * @param array $nmIds
      * @param array $chrtIds
      * @param int   $limit
@@ -509,6 +495,19 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         return (new WildberriesData($this->postResponse('api/analytics/v1/stocks-report/wb-warehouses', $props)))->data;
     }
 
+    /**
+     * @param array $nmIds
+     * @param array $currentPeriod
+     * @param string $orderByField
+     * @param array|null $pastPeriod
+     * @param int $limit
+     * @param int $offset
+     * @param bool $includeSubstitutedSKUs
+     * @param bool $includeSearchTexts
+     * @param string $positionCluster
+     *
+     * @return mixed
+     */
     public function getWbSearchReport(
         array $nmIds,
         array $currentPeriod,
@@ -519,8 +518,7 @@ class WildberriesSellerAnalytics extends WildberriesSellerAnalyticsClient
         bool $includeSubstitutedSKUs = true,
         bool $includeSearchTexts = true,
         string $positionCluster = 'all',
-    )
-    : mixed
+    ): mixed
     {
         $props = array_filter([
             'nmIds'         => $nmIds,

@@ -73,6 +73,7 @@ class WildberriesClient
      *
      * @param string|null $uri
      * @param array $params
+     * @param bool $is_stat
      * @return WildberriesResponse
      */
     protected function postResponse(string $uri = null, array $params = [], bool $is_stat = false): WildberriesResponse

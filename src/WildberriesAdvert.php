@@ -56,11 +56,10 @@ class WildberriesAdvert extends WildberriesAdvertClient
     /**
      * Получение списка РК поставщика v2
      *
-     * @param ?int $status
-     * @param ?int $type
-     * @param ?string $order
-     * @param ?string $direction
-     * @return array
+     * @param int|null $id
+     * @param int|null $status
+     * @param int|null $paymentType
+     * @return mixed
      */
     public function getAdvertsV2(
         int $id = null,

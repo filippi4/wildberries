@@ -49,7 +49,6 @@ class WildberriesDiscountsPricesClient
      *
      * @param string|null $uri
      * @param array $params
-     * @param bool $is_stat
      * @return WildberriesResponse
      */
     protected function getResponse(string $uri = null, array $params = []): WildberriesResponse
@@ -92,7 +91,6 @@ class WildberriesDiscountsPricesClient
      *
      * @param string|null $uri
      * @param array $params
-     * @param bool $is_stat
      * @return mixed
      */
     protected function getResponseWithJson(string $uri = null, array $params = []): mixed
